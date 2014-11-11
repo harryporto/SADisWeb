@@ -118,7 +118,7 @@
 								Código: <input type="text" name="mytext[]">
 								Ementa: <input type="text" name="mytext[]">
 								Carga Horária: <input type="text" name="mytext[]">
-								<button class="add_field_button">Adicionar Disciplina</button>
+								<button class="add_field_button">+</button>
 							</div>
 							
 
