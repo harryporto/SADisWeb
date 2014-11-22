@@ -8,6 +8,7 @@ body{
 }
 h1{ font-size: 20px; font-family: 'Open Sans', sans-serif; color: #DC792F; font-weight:600; margin:5px 0;}
 h2{ font-size: 15px; font-family: 'Open Sans', sans-serif; color: #000; font-weight:600; margin:5px 0;}
+h3{ font-size: 20px; font-family: 'Open Sans', sans-serif; color: #FF0000; font-weight:0; margin:0px 0;}
 p{ font-size: 14px; font-family: 'Open Sans', sans-serif; font-weight: 400; color: #DC792F; margin:5px 0;}
 a { font-size: 14px; font-family: 'Open Sans', sans-serif; color: #FFF; text-decoration:none;} 
 a:hover { color: #000;  text-decoration: none; }
@@ -417,3 +418,4 @@ input {
 .butn-rc {
 	border-radius: 4px;
 }
+

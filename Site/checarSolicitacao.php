@@ -23,7 +23,7 @@
 	if (!isset($codigo) || !isset($jsonArray) || sizeof($jsonArray) == 0){
 	  $jsonArray['data'][] = array(
 	    "date"    => "",
-  	  "status"  => utf8_encode("Solicitação não encontrada"),
+  	  "status"  => utf8_encode("Solicitação não encontrada!"),
   	  "message" => ""
   	);
 	}

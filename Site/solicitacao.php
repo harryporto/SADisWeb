@@ -20,14 +20,15 @@
 			e.preventDefault();
 			if(x < max_fields){ 
 				x++; 
-				$(wrapper).append('<br><br><div>'); 
-				$(wrapper).append(' Nome: <input type="text" name="mytext[]"/>'); 
-				$(wrapper).append(' Código: <input type="text" name="mytext[]"/>'); 
-				$(wrapper).append(' Ementa: <input type="text" name="mytext[]"/>'); 
-				$(wrapper).append(' Carga horária: <input type="text" name="mytext[]"/>'); 
-				$(wrapper).append(' <a href="#" class="remove_field butt butt-shadow butt-rc butt-primary">–</a></div>'); 
+				$(wrapper).append('<div style="margin-top:5px;" >'
+				+' Nome: <input type="text" name="mytext[]"/>'
+				+' Código: <input type="text" name="mytext[]"/>'
+				+' Carga Horária: <input type="text" name="mytext[]"/>'
+				+' <a href="#" class="remove_field"><button>Remover Disciplina</button></a></div>'); 
 			}
 		});
+
+		
 	   
 		$(wrapper).on("click",".remove_field", function(e){ 
 			e.preventDefault(); $(this).parent('div').remove(); x--;
@@ -56,30 +57,34 @@
 			<div class="grid_24">
 				<div class="background_transparente">    
 					<div class="id_aba_ativa">
-						Solicitar Aproveitamento
+						<font color="000" size="3px"style="font-weight:bold;">Solicitar Aproveitamento</font>
 					</div>
 
 					<div class="clearfix"></div> 
 					<div class="background_conteudo">
+						<font color="#000" face="arial, verdana, helvetica"size="2px"style="font-weight:bold;">Atenção, todos os campos com (*) asterisco, devem ser preenchidos!</font><br><br>
 						<form method="POST" action="confirmar.php" onsubmit="return validar(this);"  enctype="multipart/form-data">
-							<h2>Nome Completo </h2>  
+							<font color="#000" face="arial, verdana, helvetica"size="3px">Nome Completo</font><font color="#FF0000">*</font><br><p>  
 							<input maxlength="100" style="width:350px;" type="textfield" name="Nome" id="Nome"/> 					
 							</br>	
 							<br />
 							
-							<h2>Telefone </h2>
+							<font color="#000" face="arial, verdana, helvetica"size="3px">Telefone</font><font color="#FF0000">*</font><br><p>
 							<input maxlength="10" type="textfield" name="Telefone" id="Telefone"/> 
+							</br>
 							<br />
 							
-							<h2>Email </h2>
+							<font color="#000" face="arial, verdana, helvetica"size="3px">E-mail</font><font color="#FF0000">*</font><br><p>
 							<input maxlength="50" type="textfield" name="Email" id="Email"/> 
+							</br>
 							<br />
 							
-							<h2>Matrícula </h2>
+							<font color="#000" face="arial, verdana, helvetica"size="3px">Matrícula</font><font color="#FF0000">*</font><br><p>
 							<input maxlength="10" type="textfield" name="Matricula" id="Matricula"/> 
+							</br>
 							<br />							
 							
-							<h2>Faculdade Atual </h2>
+							<font color="#000" face="arial, verdana, helvetica"size="3px">Faculdade de Origem</font><font color="#FF0000">*</font><br><p>
 							
 							<select name="FACULDADE">
 								<option value="0" > Selecione... </option>  
@@ -95,7 +100,7 @@
 							
 							</br>	
 							<br />
-							<h2>Curso Solicitado </h2>
+							<font color="#000" face="arial, verdana, helvetica"size="3px">Curso Solicitado</font><font color="#FF0000">*</font><br><p>
 							<select name="CURSO">
 								<option value="0" > Selecione... </option>  
 								<?php 
@@ -110,22 +115,32 @@
 
 							</br>	
 							<br />
+
+							<form>
+								
+								<font color="#000" face="arial, verdana, helvetica"size="3px">Nível</font><font color="#FF0000">*</font><br><p>
+								<INPUT TYPE="radio" NAME="OPCAO" VALUE="op1"><font color="#000" face="arial"size="2px">Graduação</font><br>
+								<INPUT TYPE="radio" NAME="OPCAO" VALUE="op2"><font color="#000" face="arial"size="2px">Pós Graduação</font><br>
+								<INPUT TYPE="radio" NAME="OPCAO" VALUE="op3"><font color="#000" face="arial"size="2px">Mestrado/Doutorado</font>
+								</form>
 							
 							
-							<h2>Disciplinas Cursadas</h2> 
+							<font color="#000" face="arial, verdana, helvetica"size="3px">Disciplinas Cursadas</font><font color="#FF0000">*</font><br><p>
 							<div class="input_fields_wrap">
 								Nome: <input type="text" name="mytext[]">
 								Código: <input type="text" name="mytext[]">
-								Ementa: <input type="text" name="mytext[]">
+								<!--Ementa: <input type="text" name="mytext[]">!-->
 								Carga Horária: <input type="text" name="mytext[]">
-								<button class="add_field_button butt butt-primary butt-shadow butt-rc">+</button>
+								<button class="add_field_button">Adicionar Disciplina</button>
 							</div>
+
 							
 
 							</br>	
 
 							
-							<h2>Histórico Escolar Anterior ( Imagem ou PDF ) </h2>  
+							<h2>Você pode anexar até dois arquivos (Imagem ou PDF) </h2>  
+							<input name="userfile" type="file" /><br><p>
 							<input name="userfile" type="file" />
 							<br />
 							<br/>

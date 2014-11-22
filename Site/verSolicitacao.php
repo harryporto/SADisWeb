@@ -20,13 +20,13 @@
 			<div class="grid_24">
 				<div class="background_transparente">    
 					<div class="id_aba_ativa">
-						Acompanhar Solicitação
+						<font color="000" size="3px"style="font-weight:bold;">Acompanhar Solicitação</font>
 					</div>
 
 					<div class="clearfix"></div> 
 					<div class="background_conteudo">
 						<div class="background_conteudo">
-							<h1> Status da Solicitação: <br>
+							<h2> STATUS DA SOLICITAÇÃO: 
 							<?php 
 							  $tempData = json_decode(str_replace("'", '"', $_POST['jsonData']), true);
 $data = $tempData["data"];
