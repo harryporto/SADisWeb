@@ -139,7 +139,7 @@
 							</br>	
 
 							
-							<h2>Você pode anexar um arquivo (Imagem ou PDF) </h2>  
+							<h2>Você pode anexar um arquivo(Imagem ou PDF) </h2>  
 							<input name="userfile" type="file" />
 							
 							<br />
