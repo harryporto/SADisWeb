@@ -140,8 +140,8 @@
 
 							
 							<h2>Você pode anexar até dois arquivos (Imagem ou PDF) </h2>  
-							<input name="userfile" type="file" /><br><p>
 							<input name="userfile" type="file" />
+							
 							<br />
 							<br/>
 							<br/>						
