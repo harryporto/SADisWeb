@@ -351,11 +351,11 @@ input {
 	display: inline-block;
 	background-color: #ccc;
 	color: #444;
-	padding: 0px 10px;
+	padding: 5px 10px;
 	text-decoration: none;
 	box-sizing: border-box;
 	font-family: Helvetica, Arial, sans-serif;
-	font-size: 18px;
+	font-size: 16px;
 	border: 0px;
 }
 

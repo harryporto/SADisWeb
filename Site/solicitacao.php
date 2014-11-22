@@ -116,13 +116,13 @@
 							</br>	
 							<br />
 
-							<form>
+							
 								
 								<font color="#000" face="arial, verdana, helvetica"size="3px">Nível</font><font color="#FF0000">*</font><br><p>
 								<INPUT TYPE="radio" NAME="OPCAO" VALUE="op1"><font color="#000" face="arial"size="2px">Graduação</font><br>
-								<INPUT TYPE="radio" NAME="OPCAO" VALUE="op2"><font color="#000" face="arial"size="2px">Pós Graduação</font><br>
-								<INPUT TYPE="radio" NAME="OPCAO" VALUE="op3"><font color="#000" face="arial"size="2px">Mestrado/Doutorado</font>
-								</form>
+								<INPUT TYPE="radio" NAME="OPCAO" VALUE="op2"><font color="#000" face="arial"size="2px">Pós-Graduação</font><br>
+								<INPUT TYPE="radio" NAME="OPCAO" VALUE="op3"><font color="#000" face="arial"size="2px">Mestrado/Doutorado</font><br><br>
+								
 							
 							
 							<font color="#000" face="arial, verdana, helvetica"size="3px">Disciplinas Cursadas</font><font color="#FF0000">*</font><br><p>
@@ -139,9 +139,9 @@
 							</br>	
 
 							
-							<h2>Você pode anexar até dois arquivos (Imagem ou PDF) </h2>  
-							<input name="userfile" type="file" /><br><p>
+							<h2>Você pode anexar um arquivo (Imagem ou PDF) </h2>  
 							<input name="userfile" type="file" />
+							
 							<br />
 							<br/>
 							<br/>						

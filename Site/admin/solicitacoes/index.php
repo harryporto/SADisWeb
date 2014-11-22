@@ -71,7 +71,7 @@
 				<td>' .	$nmCurso . '</td>
 				<td>' .	$nmFaculdade . '</td>
 				<td>' . utf8_encode(mysql_result($rs,$i,'MatIdeAluno')) . '</td>
-				<td><a href=uploads/' . utf8_encode(mysql_result($rs,$i,'CompAluno')) . '><button class="butt butt-rc butt-shadow butt-primary">+</button></a></td>
+				<td><a href=uploads/' . utf8_encode(mysql_result($rs,$i,'CompAluno')) . '><button class="butt butt-rc butt-shadow butt-primary">info</button></a></td>
 				<td>' . utf8_encode(mysql_result($rs,$i,'StatusSolic')) . '</td>
 				<td>' . utf8_encode(mysql_result($rs,$i,'CodSolic')) . '</td>
 				<td>' . date_format($abertura, 'd/m/Y H:i') . '</td>
@@ -122,7 +122,7 @@
 						
 						</table>	
 <br>
-<a href="../index.php"><button class="butt butt-rc butt-shadow butt-primary">voltar</button></a>
+<a href="../index.php"><button class="btn">voltar</button></a>
 						<div class="clearfix"></div>
 					</div>
 				</div>

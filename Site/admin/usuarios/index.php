@@ -113,7 +113,7 @@
 						
 						</table>	
 <br>
-<a href="../index.php"><button class="butt butt-rc butt-shadow butt-primary">voltar</button></a>
+<a href="../index.php"><button class="btn">voltar</button></a>
 						<div class="clearfix"></div>
 					</div>
 				</div>
