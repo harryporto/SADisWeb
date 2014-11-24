@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SADisApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="code">Código da Solicitação:</string>
+    <string name="send">ENVIAR</string>
+    <string name="back">VOLTAR</string>
+    <string name="acompanhar">Acompanhar Solicitação</string>
+    <string name="logoDesc">SADis - Sistema de Aproveitamento de Disciplinas</string>
+    
+</resources>
