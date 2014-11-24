@@ -64,6 +64,9 @@
 					<div class="background_conteudo">
 						<font color="#000" face="arial, verdana, helvetica"size="2px"style="font-weight:bold;">Atenção, todos os campos com (*) asterisco, devem ser preenchidos!</font><br><br>
 						<form method="POST" action="confirmar.php" onsubmit="return validar(this);"  enctype="multipart/form-data">
+							
+							<fieldset>
+								<legend> Dados Pessoais </legend>
 							<font color="#000" face="arial, verdana, helvetica"size="3px">Nome Completo</font><font color="#FF0000">*</font><br><p>  
 							<input maxlength="100" style="width:350px;" type="textfield" name="Nome" id="Nome"/> 					
 							</br>	
@@ -82,7 +85,10 @@
 							<font color="#000" face="arial, verdana, helvetica"size="3px">Matrícula</font><font color="#FF0000">*</font><br><p>
 							<input maxlength="10" type="textfield" name="Matricula" id="Matricula"/> 
 							</br>
-							<br />							
+							<br />
+							</fieldset><br><br>	
+							<fieldset>
+							<legend>Dados da Solicitação</legend>					
 							
 							<font color="#000" face="arial, verdana, helvetica"size="3px">Faculdade de Origem</font><font color="#FF0000">*</font><br><p>
 							
@@ -137,10 +143,11 @@
 							
 
 							</br>	
-
+							</fieldset>
 							
 							<h2>Você pode anexar um arquivo(Imagem ou PDF) </h2>  
 							<input name="userfile" type="file" />
+						
 							
 							<br />
 							<br/>
