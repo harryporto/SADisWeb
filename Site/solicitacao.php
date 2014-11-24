@@ -57,7 +57,7 @@
 			<div class="grid_24">
 				<div class="background_transparente">    
 					<div class="id_aba_ativa">
-						<font color="000" size="3px"style="font-weight:bold;">Solicitar Aproveitamento</font>
+						<font color="DC792F" size="3px"style="font-weight:bold;">Solicitar Aproveitamento</font>
 					</div>
 
 					<div class="clearfix"></div> 

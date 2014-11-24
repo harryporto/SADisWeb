@@ -95,7 +95,7 @@
 				</div>
 			</div>
 			<div class="grid_24">
-				<div class="background_transparente">    
+				<div class="background-transparente">    
 					<div class="id_aba_ativa">
 						Solicitações
 					</div>

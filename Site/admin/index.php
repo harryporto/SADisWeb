@@ -38,10 +38,10 @@
 			<div class="grid_24">
 				<div class="background_transparente">    		
 					<div class="clearfix"></div> 
-						<div class="grid_18 prefix_6"> 
-								<div class="grid_17 prefix_6" style="margin-center:100px"><h1 >Painel de Controle</h1></div>	
+						<div class="grid_17 prefix_5"> 
+								<div class="grid_17 prefix_5" style="margin-center:100px"><h3 >Painel de Controle</h3></div>	
 								<br>
-								<div class="grid_21 prefix_3">
+								<div class="grid_20 prefix_2">
 								<div class="grid_6"><td><a href="usuarios/index.php"> <br><br><button class="but but-rc but-primary but-shadow"> Usuários</button></a></td></div>
 								<div class="grid_6 prefix_2"><td><a href="solicitacoes/index.php"><br><br> <button class="but but-primary but-rc but-shadow">Solicitações </button></a></td></div>
 
