@@ -43,16 +43,15 @@
 
 		<div class="background">
 			<div class="container_24">
-				<div class="grid_8 prefix_7 suffix_8">
+				<div class="grid_8 prefix_7 suffix_6"><br>
 					<div class="logo">
-						<a href="../index.html"><img src="../logo_SADis_menor.png"></a>
-
+						<img src="../img/logo_SADis_menor.png"><br><br>
 					</div>
 				</div>
 				<div class="grid_10 prefix_7 suffix_7">
 					<div class="background_trasnparente">
 						<form method="POST" action="">
-							<br><br><input value="Usuário" onFocus="javascript:this.value=''" type="text" name="login" class="input input_login"></input>
+							<input value="Usuário" onFocus="javascript:this.value=''" type="text" name="login" class="input input_login"></input>
 							<input type="password" name="senha" class="input input_login"></input>
 							
 							

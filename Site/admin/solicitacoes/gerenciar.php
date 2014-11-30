@@ -61,23 +61,20 @@
 			$disc2 ="";
 			$disc2 .= "";
 			$aluno = utf8_encode($row["CdIdeAluno"]);
-			$sql1 = "SELECT DISCIPLINAS_CdIdeDis FROM r_alunos_disciplinas WHERE ALUNOS_CdIdeAlu = ".$aluno;
+			$sql1 = "SELECT * FROM r_alunos_disciplinas WHERE ALUNOS_CdIdeAlu = ".$aluno;
 			$result3 = mysql_query($sql1);
 			while($row3 = mysql_fetch_array($result3))
 			{ 
-				$disc= $row3['DISCIPLINAS_CdIdeDis'];
-				$result4 = mysql_query("SELECT NmIdeDis FROM disciplinas WHERE CdIdeDis = '$disc'");
-				while($row4 = mysql_fetch_array($result4))
-				{ 
-					$disc2 .= utf8_encode($row4['NmIdeDis'])."<br>";
-				}
+ 
+				$disc2 .= utf8_encode($row3['NmIdeDisciplina'])." ".utf8_encode($row3['EmentaDisciplina'])." ".utf8_encode($row3['CargaHorariaDisciplina'])."<br>";
+
 			}
 			
 			$nome = utf8_encode($row["NmIdeAluno"]);
 			$telefone = utf8_encode($row["TelIdeAluno"]);
 			$email = utf8_encode($row["EmailIdeAluno"]);
 			$matricula = utf8_encode($row["MatIdeAluno"]);
-			$comprovante = "<a href=uploads/".utf8_encode($row["CompAluno"]).">Link</a>";
+			$comprovante = "<a href=uploads/".utf8_encode($row["CompAluno"])."><button >ver</button></a>";
 			$status = utf8_encode($row["StatusSolic"]);
 			$codigo = utf8_encode($row["CodSolic"]);
 		}
@@ -95,8 +92,8 @@
 			</div>
 			<div class="grid_7">
 				<div class="id_usuario">
-					<a style="margin-left:15px;" href="login.php" class="right">Sair</a>
-					<h1 class="right">Usuário Administrador  </h1>
+					<a style="margin-left:15px;" href="login.php" class="right"title="Sair"><input name="exit1" type="button" class="exit1"></a>
+					
 				</div>
 			</div>
 			<div class="grid_24">
@@ -140,4 +137,4 @@
 else {
 header("location: ../acessonegado.php");
 }
-?>     
+?>

@@ -1,4 +1,4 @@
-﻿﻿<head>
+﻿<head>
 <title>SADis - Sistema de Aproveitamento de Disciplinas</title>
 <meta charset="utf-8" />
 <title></title>
@@ -43,9 +43,20 @@
 		$rs = mysql_query($query);
 	//auditoria ends
 	
+	$result = mysql_query("SELECT Departamento_CdIdeDepartamento from usuarios where CdIdeUsu = ".$idUsuario."");
+	while($row = mysql_fetch_array($result)){
+		$departamento = $row["Departamento_CdIdeDepartamento"];
+	}
 		
-
-	$rs = mysql_query("select * from solicitacoes");
+	if ( $departamento != 4 ) {
+		$sqlSolicitacoes = "select * from solicitacoes JOIN cursos WHERE cursos.CdIdeCur = solicitacoes.CURSOS_CdIdeCurso AND cursos.Departamento_CdIdeDepartamento = '$departamento' ";
+		$rs = mysql_query($sqlSolicitacoes);
+		echo $sqlSolicitacoes;
+	}
+	else{
+		$sqlSolicitacoes = "select * from solicitacoes ";
+		$rs = mysql_query($sqlSolicitacoes);
+	}
 	$linhas = mysql_num_rows($rs);
 
 
@@ -71,12 +82,14 @@
 				<td>' .	$nmCurso . '</td>
 				<td>' .	$nmFaculdade . '</td>
 				<td>' . utf8_encode(mysql_result($rs,$i,'MatIdeAluno')) . '</td>
-				<td><a href=uploads/' . utf8_encode(mysql_result($rs,$i,'CompAluno')) . '><button class="butt butt-rc butt-shadow butt-primary">info</button></a></td>
+				<td><a href=uploads/' . utf8_encode(mysql_result($rs,$i,'CompAluno')) . '><input name="more" type="button" class="more"></a></td>
 				<td>' . utf8_encode(mysql_result($rs,$i,'StatusSolic')) . '</td>
 				<td>' . utf8_encode(mysql_result($rs,$i,'CodSolic')) . '</td>
 				<td>' . date_format($abertura, 'd/m/Y H:i') . '</td>
 
-
+				<td> <a href= "gerenciar.php?CdIdeAluno=' . mysql_result($rs,$i,'CdIdeAluno') . ' 
+				"><input name="gerenciar" type="button" class="gerenciar"></a> </td>
+				<td><a href="imprimir.php?CdIdeAluno='. mysql_result($rs,$i,'CdIdeAluno').'"><input name="print" type="button" class="print"></a></td>
 			</tr>';
 	}
 ?>
@@ -90,8 +103,8 @@
 			</div>
 			<div class="grid_7">
 				<div class="id_usuario">
-					<a style="margin-left:15px;" href="../login.php" class="right">Sair</a>
-					<h1 class="right">Usuário Administrador  </h1>
+					<a style="margin-left:15px;" href="../login.php" class="right"title="Sair"><input name="exit1" type="button" class="exit1"></a>
+					
 				</div>
 			</div>
 			<div class="grid_24">
@@ -113,6 +126,8 @@
 								<td><h2>Status da Solicitação</h2></td>
 								<td><h2>Código </h2></td>
 								<td><h2>Abertura </h2></td>																													
+								<td><h2> </h2></td>																													
+								<td><h2> </h2></td>																													
 														
 							</tr>  
 						</thead>	

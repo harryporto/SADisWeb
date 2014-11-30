@@ -1,5 +1,4 @@
 ﻿<head>
-<title>SADis - Sistema de Aproveitamento de Disciplinas</title>
 <meta charset="utf-8" />
 <title></title>
 <link rel="stylesheet" href="../../css/960_24_col.css" type='text/css'/> <!-- Grid 960 -->
@@ -51,11 +50,13 @@
 		$nome = utf8_decode($_POST['NmIdeUsu']);
 		$senha = utf8_decode($_POST['SenhaIdeUsu']);
 		$email = utf8_decode($_POST['EmailIdeUsu']);
+		$departamento = utf8_decode($_POST['Departamento_CdIdeDepartamento']);
 
 		$nivel = strip_tags(mysql_real_escape_string($nivel,$con));	
 		$nome = strip_tags(mysql_real_escape_string($nome,$con));	
 		$senha = strip_tags(mysql_real_escape_string($senha,$con));	
 		$email = strip_tags(mysql_real_escape_string($email,$con));	
+		$departamento = strip_tags(mysql_real_escape_string($departamento,$con));	
 		
 		
 		$sql = "INSERT INTO  usuarios 
@@ -70,7 +71,8 @@
 											'" . $nivel . "' ,											
 											'" . $nome . "' ,											
 											'" . $senha . "' ,											
-											'" . $email . "' 										
+											'" . $email . "' ,										
+											'" . $departamento . "' 										
 											)";
 											
 		$rs = mysql_query($sql);	
@@ -89,8 +91,8 @@
 			</div>
 			<div class="grid_7">
 				<div class="id_usuario">
-					<a style="margin-left:15px;" href="login.php" class="right">Sair</a>
-					<h1 class="right">Usuário Administrador  </h1>
+					<a style="margin-left:15px;" href="login.php" class="right"><input name="exit1" type="button" class="exit1"></a>
+					
 				</div>
 			</div>
 			<div class="grid_24">
@@ -121,12 +123,22 @@
 							<h2>Nome: </h2><input type="text" name="NmIdeUsu" id="NOME" />
 							<h2>Senha: </h2><input type="text" name="SenhaIdeUsu" id="NOME" />
 							<h2>Email: </h2><input type="text" name="EmailIdeUsu" id="NOME" />
-
+							<h2>Departamento: </h2> 
+							<select name="Departamento_CdIdeDepartamento">
+								<?php 
+									  $result = mysql_query("SELECT CdIdeDepartamento  , NmIdeDepartamento from departamentos  ");
+										while($row = mysql_fetch_array($result))
+										{ ?><option value="<?php echo utf8_encode($row['CdIdeDepartamento']);?>" > <?php echo utf8_encode($row['NmIdeDepartamento']);?> </option>             
+									<?php
+										}
+								?>    
+																						
+							</select>
 							<br />		
 							<br />		
 							<br />		
-							
-							<input type="submit" class="btn" value="ENVIAR"  onClick="if (!validacao()) return false;"/>
+							<a href="../index.php">&nbsp;<button class="butn butn-rc butn-primary butn-shadow">voltar</button></a>
+							<input style="margin-left:20px;"type="submit" class="butn butn-rc butn-primary butn-shadow" value="enviar"  onClick="if (!validacao()) return false;"/>
 
 						</form>
 						<div class="clearfix"></div>

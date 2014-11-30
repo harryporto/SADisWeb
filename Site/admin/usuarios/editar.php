@@ -1,5 +1,4 @@
 <head>
-<title>SADis - Sistema de Aproveitamento de Disciplinas</title>
 <meta charset="utf-8" />
 <title></title>
 <link rel="stylesheet" href="../../css/960_24_col.css" type='text/css'/> <!-- Grid 960 -->
@@ -153,4 +152,4 @@
 else {
 header("location: ../acessonegado.php");
 }
-?>
+?>     

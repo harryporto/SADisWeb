@@ -1,6 +1,5 @@
-﻿﻿<head>
+﻿<head>
 <meta charset="utf-8" />
-<title>SADis - Sistema de Aproveitamento de Disciplinas</title>
 <title></title>
 <link rel="stylesheet" href="../../css/960_24_col.css" type='text/css'/> <!-- Grid 960 -->
 <link rel="stylesheet" href="../../css/jquery.dataTables.css" type='text/css'/> <!-- Grid 960 -->
@@ -51,6 +50,17 @@
 	$html = null;
 
 	for($i=0;$i<$linhas;$i++){
+		$idDepartamento = mysql_result($rs,$i,'Departamento_CdIdeDepartamento');
+		
+		$sqlDepartamento = "SELECT * FROM departamentos WHERE CdIdeDepartamento = '$idDepartamento' ";
+
+		$rsDepartamento = mysql_query($sqlDepartamento);
+		
+		while($row5 = mysql_fetch_array($rsDepartamento)){
+			$nmDepartamento = $row5["NmIdeDepartamento"];
+		}
+
+
 		//bairro
 		$nivel = mysql_result($rs,$i,'Niveis_CdIdeNivel');
 		$result = mysql_query("SELECT DsIdeNivel from niveis WHERE CdIdeNivel = '$nivel'");
@@ -63,11 +73,13 @@
 				<td>' .	utf8_encode(mysql_result($rs,$i,'NmIdeUsu')) . '</td>
 				<td>' .	utf8_encode(mysql_result($rs,$i,'SenhaIdeUsu')) . '</td>
 				<td>' .	utf8_encode(mysql_result($rs,$i,'EmailIdeUsu')) . '</td>
+				<td>' .	$nmDepartamento . '</td>
 
 				<td> <a href= "editar.php?CdIdeUsu=' . mysql_result($rs,$i,'CdIdeUsu') . ' 
-				"> <button class="butt butt-rc butt-primary butt-shadow">editar</button></a> </td>
-				<td><a href="deletar.php?CdIdeUsu='. mysql_result($rs,$i,'CdIdeUsu').'"><button class="butt butt-rc butt-primary butt-shadow">remover</button></a> </td>
+				"title="Editar"><input name="edit" type="button" class="edit"></a> </td>
+				<td><a href="deletar.php?CdIdeUsu='. mysql_result($rs,$i,'CdIdeUsu').'"title="Remover"><input name="remove" type="button" class="remove"></a> </td>
 			</tr>';
+
 	}
 ?>
 <body>
@@ -80,8 +92,8 @@
 			</div>
 			<div class="grid_7">
 				<div class="id_usuario">
-					<a style="margin-left:15px;" href="../login.php" class="right">Sair</a>
-					<h1 class="right">Usuário Administrador  </h1>
+					<a style="margin-left:15px;" href="login.php" class="right"title="Sair"><input name="exit1" type="button" class="exit1"></a>
+					
 				</div>
 			</div>
 			<div class="grid_24">
@@ -103,6 +115,7 @@
 								<td><h2>Nome  </h2></td>															
 								<td><h2>Senha  </h2></td>															
 								<td><h2>Email  </h2></td>															
+								<td><h2>Departamento  </h2></td>															
 								<td><h2>  </h2></td>															
 								<td><h2>  </h2></td>															
 							</tr>  
@@ -111,9 +124,10 @@
 							<?php echo $html; ?>
 						</tbody>	
 						
-						</table>	
+						</table>
 <br>
-<a href="../index.php"><button class="btn">voltar</button></a>
+<a href="../index.php">&nbsp;<button class="butn butn-rc butn-primary butn-shadow">voltar</button></a>
+
 						<div class="clearfix"></div>
 					</div>
 				</div>
