@@ -47,7 +47,10 @@
 				+' Código: <input type="text" name="mytext[]"/>'
 				+' Carga Horária: <input type="text" name="mytext[]"/>'
 				+' <a href="#" class="remove_field"><button class="rem_field_but">Remover Disciplina</button></a>'
-				+' <input class="userfile" name="userfile'+x+'" type="file" /></div>'); 
+				+' <br>'
+			  +' <br>'
+				+' <span class="comments">Observações: <textarea rows="6" cols="50" name="comment'+x+'"></textarea></span>'
+				+' <span class="upload_area">Ementa: <input class="userfile" name="userfile'+x+'" type="file" /></span></div>'); 
 			}
 		});
 	});
@@ -160,7 +163,10 @@
 								Código: <input type="text" name="mytext[]">
 								<!--Ementa: <input type="text" name="mytext[]">!-->
 								Carga Horária: <input type="text" name="mytext[]">
-  							<input class="userfile" name="userfile1" type="file" />
+								<br>
+								<br>
+								<span class="comments">Observações: <textarea rows="6" cols="50" name="comment1"></textarea></span>
+  							<span class="upload_area">Ementa: <input class="userfile" name="userfile1" type="file" /></span>
   						</div>
 							</div>
 

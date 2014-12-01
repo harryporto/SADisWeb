@@ -29,6 +29,15 @@
 	$compAluno = "endereco gravacao";
 	$status = "Para conhecimento";
 	$codigo = rand();
+
+  // Salva todos os comentarios em uma array
+  $comments = array();
+  for ($i = 0; $i < $numDisc; i++){
+    if (isset($_POST["comments"]))
+    	push_array($comments, strip_tags(mysql_real_escape_string($_POST["comments"],$con)));
+    else
+      push_array($comments, "");
+  }
 	
 	//Imagem 
 	$uploaddir = 'admin/solicitacoes/uploads_temp/';
@@ -125,6 +134,7 @@
 	
 	// Pega o indice do ultimo insert para gravar na tabela relacionamento
 	$indAluno = mysql_insert_id();
+
 	include ("gravarDisciplinas.php");
 ?>
 

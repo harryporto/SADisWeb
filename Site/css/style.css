@@ -527,3 +527,15 @@ input {
  border: none;
  font-size:0%
 }
+
+.input_field{
+  margin-top: 20px;
+}
+
+.comments *{
+  vertical-align: middle;
+}
+
+.upload_area{
+  margin-left: 20px;
+}
