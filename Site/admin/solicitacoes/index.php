@@ -82,14 +82,14 @@
 				<td>' .	$nmCurso . '</td>
 				<td>' .	$nmFaculdade . '</td>
 				<td>' . utf8_encode(mysql_result($rs,$i,'MatIdeAluno')) . '</td>
-				<td><a href=uploads/' . utf8_encode(mysql_result($rs,$i,'CompAluno')) . '><input name="more" type="button" class="more"></a></td>
+				<td><a href=uploads/' . utf8_encode(mysql_result($rs,$i,'CompAluno')) . '><input title="Informações" name="more" type="button" class="more"></a></td>
 				<td>' . utf8_encode(mysql_result($rs,$i,'StatusSolic')) . '</td>
 				<td>' . utf8_encode(mysql_result($rs,$i,'CodSolic')) . '</td>
 				<td>' . date_format($abertura, 'd/m/Y H:i') . '</td>
 
 				<td> <a href= "gerenciar.php?CdIdeAluno=' . mysql_result($rs,$i,'CdIdeAluno') . ' 
-				"><input name="gerenciar" type="button" class="gerenciar"></a> </td>
-				<td><a href="imprimir.php?CdIdeAluno='. mysql_result($rs,$i,'CdIdeAluno').'"><input name="print" type="button" class="print"></a></td>
+				"title="Visualizar"><input name="gerenciar" type="button" class="gerenciar"></a> </td>
+				<td><a href="imprimir.php?CdIdeAluno='. mysql_result($rs,$i,'CdIdeAluno').'"title="Imprimir"><input name="print" type="button" class="print"></a></td>
 			</tr>';
 	}
 ?>
