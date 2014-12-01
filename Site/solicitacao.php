@@ -16,23 +16,40 @@
 		var add_button      = $(".add_field_button"); 
 	   
 		var x = 1;
+
+		$(wrapper).on("click",".remove_field", function(e){ 
+			e.preventDefault(); 
+			var it = $(this).parent('div').parent('div').children();
+			it = it.first();
+			for (i = 1; i <= parseInt($(this).parent('div').attr("value")); i++){
+			  it = it.next();
+			}
+			for (i = parseInt($(this).parent('div').attr("value")); i < x; i++){
+			  var prevVal = parseInt(it.attr("value"));
+  			it.attr("value", prevVal-1);
+  			it.find(".userfile").attr("name", "userfile"+(prevVal-1));
+  			it = it.next();
+			}
+			$(this).parent('div').remove(); 
+			x--;
+			
+			$(".hidden_size").attr("value", parseInt(x));
+		})
+
 		$(add_button).click(function(e){ 
 			e.preventDefault();
 			if(x < max_fields){ 
 				x++; 
-				$(wrapper).append('<div style="margin-top:5px;" >'
+  			$(".hidden_size").attr("value", parseInt(x));
+
+				$(wrapper).append('<div class="input_field" value="'+x+'">'
 				+' Nome: <input type="text" name="mytext[]"/>'
 				+' Código: <input type="text" name="mytext[]"/>'
 				+' Carga Horária: <input type="text" name="mytext[]"/>'
-				+' <a href="#" class="remove_field"><button>Remover Disciplina</button></a></div>'); 
+				+' <a href="#" class="remove_field"><button class="rem_field_but">Remover Disciplina</button></a>'
+				+' <input class="userfile" name="userfile'+x+'" type="file" /></div>'); 
 			}
 		});
-
-		
-	   
-		$(wrapper).on("click",".remove_field", function(e){ 
-			e.preventDefault(); $(this).parent('div').remove(); x--;
-		})
 	});
 
 
@@ -131,23 +148,24 @@
 								
 							
 							
-							<font color="#000" face="arial, verdana, helvetica"size="3px">Disciplinas Cursadas</font><font color="#FF0000">*</font><br><p>
+							<font color="#000" face="arial, verdana, helvetica"size="3px">Disciplinas Cursadas</font><font color="#FF0000">*</font>
+							<button class="add_field_button">Adicionar Disciplina</button>
+							<br>
+							<div>Você pode anexar um arquivo (Imagem ou PDF) </div>  
+
+							<input type="hidden" class="hidden_size" name="num_files" value="1">
 							<div class="input_fields_wrap">
+              <div class="input_field" value="1">
 								Nome: <input type="text" name="mytext[]">
 								Código: <input type="text" name="mytext[]">
 								<!--Ementa: <input type="text" name="mytext[]">!-->
 								Carga Horária: <input type="text" name="mytext[]">
-								<button class="add_field_button">Adicionar Disciplina</button>
+  							<input class="userfile" name="userfile1" type="file" />
+  						</div>
 							</div>
-
-							
 
 							</br>	
 							</fieldset>
-							
-							<h2>Você pode anexar um arquivo(Imagem ou PDF) </h2>  
-							<input name="userfile" type="file" />
-						
 							
 							<br />
 							<br/>
@@ -164,26 +182,15 @@
 </body>
 
 <script type="text/javascript">
-	$('#Telefone').keyup(function(e)
-	{
-
-		if (/\D/g.test(this.value))
-		{
+	$('#Telefone').keyup(filterDigits);
+	$('#Matricula').keyup(filterDigits);	
+	
+	function filterDigits(){
+		if (/\D/g.test(this.value)){
 			// Filter non-digits from input value.
 			this.value = this.value.replace(/\D/g, '');
 		}
-			
-	});
-	$('#Matricula').keyup(function(e)
-	{
-
-		if (/\D/g.test(this.value))
-		{
-			// Filter non-digits from input value.
-			this.value = this.value.replace(/\D/g, '');
-		}
-			
-	});	
+	}
 	
 	function validar(formulario) {
 
@@ -197,7 +204,7 @@
 			return false;
 		}
 		
-		if ((formulario.Telefone.value.length < 8 ) && (formulario.Telefone.value.length > 0 )){
+		if (formulario.Telefone.value.length < 8){
 			alert("Telefone inválido.");
 			return false;							
 		}		

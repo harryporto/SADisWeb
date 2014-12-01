@@ -508,3 +508,22 @@ input {
  border: none;
  font-size:0%
 }
+
+.add_field_button {
+ background:url(../img/plus.png) no-repeat; 
+ margin-left: 10px;
+ cursor: pointer;
+ width: 24px; 
+ height: 24px; 
+ border: none;
+ font-size:0%
+}
+
+.rem_field_but {
+ background:url(../img/close.png) no-repeat; 
+ cursor: pointer;
+ width: 24px; 
+ height: 24px; 
+ border: none;
+ font-size:0%
+}

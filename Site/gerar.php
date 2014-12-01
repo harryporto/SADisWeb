@@ -8,9 +8,23 @@
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'><!-- GoogleFonts -->
 </head>
 <?php 
-
 	require_once("db.php");
 	$codigo = $_POST['codigo'];
+
+	$uploadtemp = 'admin/solicitacoes/uploads_temp/';
+	$uploaddir = 'admin/solicitacoes/uploads/';
+
+  if (isset($_POST["files"])){
+    $files = unserialize($_POST["files"]);
+
+    foreach ($files as $file){
+      if (file_exists($uploadtemp.$file)){
+        //move_uploaded_file($uploadtemp.$file, $uploaddir.$file); // Nao funciona
+        copy($uploadtemp.$file, $uploaddir.$file);
+        unlink($uploadtemp.$file);
+      }
+    }
+  }
 ?>
 
 <body>
