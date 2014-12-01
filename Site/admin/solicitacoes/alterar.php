@@ -93,7 +93,8 @@
 								<option value="Para Conhecimento" > Para Conhecimento </option>             
 								<option value="Em avaliação" > Em avaliação </option>             
 								<option value="Indeferido" > Indeferido </option>             
-								<option value="Deferido" > Deferido </option>             								                                                     
+								<option value="Deferido" > Deferido </option>                 
+								<option value="Deferindo Presencialmente" > Deferindo Presencialmente </option>             								                                                     
 							</select>
 							
 							<br />

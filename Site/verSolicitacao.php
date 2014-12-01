@@ -47,6 +47,10 @@ $data = $tempData["data"];
     							  echo "</br>";
     							}
 							  }
+							  if ($_POST['jsonData'] == "{'data':[{'date':'','status':'Deferindo Presencialmente','message':''}]}"){
+								echo "</br>"; 
+							  	echo "Procure a secretaria do seu Departamento para reapresentação de documentos";
+							  	echo "</br>"; }
 							?>
 							</h1></br>
 							<a href="index.html"><button class="btn">Voltar</button></a>
