@@ -1,4 +1,4 @@
-﻿	@charset "UTF-8";
+﻿@charset "UTF-8";
 /* CSS Document */
 
 body{
@@ -510,11 +510,11 @@ input {
 }
 
 .add_field_button {
- background:url(../img/plus.png) no-repeat; 
+ background:url(../but/more.png) no-repeat; 
  margin-left: 10px;
  cursor: pointer;
- width: 24px; 
- height: 24px; 
+ width: 30px; 
+ height: 28px; 
  border: none;
  font-size:0%
 }

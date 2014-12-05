@@ -49,7 +49,7 @@
 				+' <a href="#" class="remove_field"><button class="rem_field_but">Remover Disciplina</button></a>'
 				+' <br>'
 			  +' <br>'
-				+' <span class="comments">Observações: <textarea rows="6" cols="50" name="comment'+x+'"></textarea></span>'
+				+' <span class="comments">Observações: <textarea rows="6" cols="37" name="comment'+x+'"></textarea></span>'
 				+' <span class="upload_area">Ementa: <input class="userfile" name="userfile'+x+'" type="file" /></span></div>'); 
 			}
 		});
@@ -152,7 +152,7 @@
 							
 							
 							<font color="#000" face="arial, verdana, helvetica"size="3px">Disciplinas Cursadas</font><font color="#FF0000">*</font>
-							<button class="add_field_button">Adicionar Disciplina</button>
+							<button class="add_field_button"></button>
 							<br>
 							<div>Você pode anexar um arquivo (Imagem ou PDF) </div>  
 
@@ -165,7 +165,7 @@
 								Carga Horária: <input type="text" name="mytext[]">
 								<br>
 								<br>
-								<span class="comments">Observações: <textarea rows="6" cols="50" name="comment1"></textarea></span>
+								<span class="comments">Observações: <textarea rows="6" cols="37" name="comment1"></textarea></span>
   							<span class="upload_area">Ementa: <input class="userfile" name="userfile1" type="file" /></span>
   						</div>
 							</div>

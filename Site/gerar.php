@@ -14,11 +14,28 @@
 	$nome = $_POST['nome'];
 	$email = $_POST['email'];
 	$matricula = $_POST['matricula'];
-	$telefone = $_POST["Telefone"];
+	$telefone = $_POST["telefone"];
 	//$nmFaculdade = $_POST[" "];
 	//$nmCurso = $_POST[" "];
+
+
+	$uploadtemp = 'admin/solicitacoes/uploads_temp/';
+	$uploaddir = 'admin/solicitacoes/uploads/';
+
+ if (isset($_POST["files"])){
+    $files = unserialize($_POST["files"]);
+
+    foreach ($files as $file){
+      if (file_exists($uploadtemp.$file)){
+        //move_uploaded_file($uploadtemp.$file, $uploaddir.$file); // Nao funciona
+        copy($uploadtemp.$file, $uploaddir.$file);
+        unlink($uploadtemp.$file);
+      }
+    }
+  }
 	
 ?>
+
 
 <body>
 	<div class="background">

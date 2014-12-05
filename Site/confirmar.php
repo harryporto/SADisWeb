@@ -32,12 +32,12 @@
 
   // Salva todos os comentarios em uma array
   $comments = array();
-  for ($i = 0; $i < $numDisc; i++){
+  /*for ($i = 0; $i < $numDisc; $i++){
     if (isset($_POST["comments"]))
     	push_array($comments, strip_tags(mysql_real_escape_string($_POST["comments"],$con)));
     else
       push_array($comments, "");
-  }
+  }*/
 	
 	//Imagem 
 	$uploaddir = 'admin/solicitacoes/uploads_temp/';
