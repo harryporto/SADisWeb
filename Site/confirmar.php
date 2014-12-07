@@ -176,13 +176,12 @@
 
 							<br>
 							<br>
-							<input style="margin-left:160px;"class="but but-rc but-shadow but-primary" type="submit" value="CONFIRMAR"  />
+							<button style="margin-left:160px;"class="but but-rc but-shadow but-primary" type="submit">Confirmar</button>
         	  </form>
 
             <form method="POST" action="removeTempFiles.php">
 						  <input type="hidden" name="files" value='<?php echo serialize($files);?>'>
-              <button style="margin-top:-48px;" class="button butn butn-rc butn-shadow butn-primary">       CANCELAR
-              </button>
+              <button style="margin-top:-48px;" class="but but-rc but-shadow but-primary">Cancelar</button>
             </form>
 
             <div class="clearfix"></div>

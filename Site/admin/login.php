@@ -51,6 +51,7 @@
 				<div class="grid_10 prefix_7 suffix_7">
 					<div class="background_trasnparente">
 						<form method="POST" action="">
+
 							<input value="Usuário" onFocus="javascript:this.value=''" type="text" name="login" class="input input_login"></input>
 							<input type="password" name="senha" class="input input_login"></input>
 							
@@ -61,7 +62,10 @@
 					</div>
 				</div>
 			</div>  
-		</div>           
+		</div> 
+
+		
+
 	 
 	</body>
 

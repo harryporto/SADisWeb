@@ -143,8 +143,8 @@
 							<br />		
 							<br />		
 							<br />		
-							<a href="../index.php">&nbsp;<button class="butn butn-rc butn-primary butn-shadow">voltar</button></a>
-							<input style="margin-left:15px;"type="submit" class="butn butn-rc butn-primary butn-shadow" value="enviar"  onClick="if (!validacao()) return false;"/>
+							<a href="../index.php">&nbsp;<button class="but but-rc but-primary but-shadow">voltar</button></a>
+							<button style="margin-left:15px;"type="submit" class="but but-rc but-primary but-shadow" onClick="if (!validacao()) return false;">enviar</button>
 
 						</form>
 						<div class="clearfix"></div>

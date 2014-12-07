@@ -87,30 +87,30 @@
 							
 							<fieldset>
 								<legend> Dados Pessoais </legend>
-							<font color="#000" face="arial, verdana, helvetica"size="3px">Nome Completo</font><font color="#FF0000">*</font><br><p>  
+							<font color="#000" face="arial, verdana, helvetica"size="2px">Nome Completo</font><font color="#FF0000">*</font><br><p>  
 							<input maxlength="100" style="width:350px;" type="textfield" name="Nome" id="Nome"/> 					
 							</br>	
 							<br />
 							
-							<font color="#000" face="arial, verdana, helvetica"size="3px">Telefone</font><font color="#FF0000">*</font><br><p>
+							<font color="#000" face="arial, verdana, helvetica"size="2px">Telefone</font><font color="#FF0000">*</font><br><p>
 							<input maxlength="10" type="textfield" name="Telefone" id="Telefone"/> 
 							</br>
 							<br />
 							
-							<font color="#000" face="arial, verdana, helvetica"size="3px">E-mail</font><font color="#FF0000">*</font><br><p>
+							<font color="#000" face="arial, verdana, helvetica"size="2px">E-mail</font><font color="#FF0000">*</font><br><p>
 							<input maxlength="50" type="textfield" name="Email" id="Email"/> 
 							</br>
 							<br />
 							
-							<font color="#000" face="arial, verdana, helvetica"size="3px">Matrícula</font><font color="#FF0000">*</font><br><p>
+							<font color="#000" face="arial, verdana, helvetica"size="2px">Matrícula</font><font color="#FF0000">*</font><br><p>
 							<input maxlength="10" type="textfield" name="Matricula" id="Matricula"/> 
 							</br>
 							<br />
-							</fieldset><br><br>	
+							</fieldset><p>	
 							<fieldset>
 							<legend>Dados da Solicitação</legend>					
 							
-							<font color="#000" face="arial, verdana, helvetica"size="3px">Faculdade de Origem</font><font color="#FF0000">*</font><br><p>
+							<font color="#000" face="arial, verdana, helvetica"size="2px">Faculdade de Origem</font><font color="#FF0000">*</font><br><p>
 							
 							<select name="FACULDADE">
 								<option value="0" > Selecione... </option>  
@@ -126,7 +126,7 @@
 							
 							</br>	
 							<br />
-							<font color="#000" face="arial, verdana, helvetica"size="3px">Curso Solicitado</font><font color="#FF0000">*</font><br><p>
+							<font color="#000" face="arial, verdana, helvetica"size="2px">Curso Solicitado</font><font color="#FF0000">*</font><br><p>
 							<select name="CURSO">
 								<option value="0" > Selecione... </option>  
 								<?php 
@@ -144,17 +144,15 @@
 
 							
 								
-								<font color="#000" face="arial, verdana, helvetica"size="3px">Nível</font><font color="#FF0000">*</font><br><p>
-								<INPUT TYPE="radio" NAME="OPCAO" VALUE="op1"><font color="#000" face="arial"size="2px">Graduação</font><br>
-								<INPUT TYPE="radio" NAME="OPCAO" VALUE="op2"><font color="#000" face="arial"size="2px">Pós-Graduação</font><br>
-								<INPUT TYPE="radio" NAME="OPCAO" VALUE="op3"><font color="#000" face="arial"size="2px">Mestrado/Doutorado</font><br><br>
+								<font color="#000" face="arial, verdana, helvetica"size="2px">Nível</font><font color="#FF0000">*</font><br><p>
+								<INPUT TYPE="radio" NAME="OPCAO" VALUE="op1"><font color="#000" face="arial"size="2px">Graduação</font>
+								<INPUT TYPE="radio" NAME="OPCAO" VALUE="op2"><font color="#000" face="arial"size="2px">Pós-Graduação</font><p><p>
 								
 							
 							
-							<font color="#000" face="arial, verdana, helvetica"size="3px">Disciplinas Cursadas</font><font color="#FF0000">*</font>
+							<font color="#000" face="arial, verdana, helvetica"size="2px">Disciplinas Cursadas</font><font color="#FF0000">*</font>
 							<button class="add_field_button"></button>
-							<br>
-							<div>Você pode anexar um arquivo (Imagem ou PDF) </div>  
+					
 
 							<input type="hidden" class="hidden_size" name="num_files" value="1">
 							<div class="input_fields_wrap">
@@ -174,9 +172,9 @@
 							</fieldset>
 							
 							<br />
-							<br/>
-							<br/>						
-							<input class="btn" type="submit" value="ENVIAR"  onClick="if (!validacao()) return false;"/>
+							
+												
+							<button class="but but-rc but-shadow but-primary" type="submit"  onClick="if (!validacao()) return false;">enviar</button>
 
 						</form>
 						<div class="clearfix"></div>

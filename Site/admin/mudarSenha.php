@@ -45,7 +45,7 @@
 						<br />
 						
 						
-						<input class="btn" type="submit" value="enviar"  onClick="if (!validacao()) return false;"/>
+						<button class="but but-rc but-shadow but-primary" type="submit"  onClick="if (!validacao()) return false;">enviar</button>
 					</form>
 						<div class="clearfix"></div>
 					</div>

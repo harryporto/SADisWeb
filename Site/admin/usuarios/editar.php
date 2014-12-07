@@ -84,8 +84,7 @@
 			</div>
 			<div class="grid_7">
 				<div class="id_usuario">
-					<a style="margin-left:15px;" href="login.php" class="right">Sair</a>
-					<h1 class="right">Usuário Administrador  </h1>
+					<a style="margin-left:15px;" href="login.php" class="right"><input name="exit1" type="button" class="exit1"></a>
 				</div>
 			</div>
 			<div class="grid_24">
@@ -136,7 +135,7 @@
 							<br />
 							
 							
-							<input class="btn" type="submit" value="ENVIAR"  onClick="if (!validacao()) return false;"/>
+							<button class="but but-rc but-shadow but-primary" type="submit"  onClick="if (!validacao()) return false;">enviar</button>
 						</form>
 
 						<div class="clearfix"></div>

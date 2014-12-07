@@ -126,7 +126,7 @@
 						
 						</table>
 <br>
-<a href="../index.php">&nbsp;<button class="butn butn-rc butn-primary butn-shadow">voltar</button></a>
+<a href="../index.php">&nbsp;<button class="but but-rc but-primary but-shadow">voltar</button></a>
 
 						<div class="clearfix"></div>
 					</div>

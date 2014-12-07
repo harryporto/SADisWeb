@@ -122,7 +122,7 @@
 						
 						<br><br><br><br>
 						<br><br>
-						<a href="alterar.php?CdIdeAluno=<?php echo $id;?>"><button style="margin-top:-62px;" class="btn"  >Alterar Status</button></a>
+						<a href="alterar.php?CdIdeAluno=<?php echo $id;?>"><button style="margin-top:-62px;" class="but but-rc but-shadow but-primary"  >Alterar Status</button></a>
 
 						<div class="clearfix"></div>
 					</div>
