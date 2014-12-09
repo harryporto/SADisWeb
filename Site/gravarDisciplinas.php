@@ -2,23 +2,22 @@
 	// Arquivo: gravarDisciplinas.php
 	// Grava as disciplinas cursadas pelo aluno na tabela
 	
-	$gDisciplinas = $_POST['disciplinas'];
-	if(empty($gDisciplinas)) 
+	$contador  = count($_POST['nomeDisciplina']);
+	
+	for($i=0; $i < $contador; $i++)
 	{
-		$semMaterias = true;
-	} 
-	else
-	{
-		$N = count($gDisciplinas);
-		for($i=0; $i < $N; $i++)
-			{
+		$sql = "INSERT INTO r_alunos_disciplinas 
+							(ALUNOS_CdIdeAlu, NmIdeDisciplina , CodDisciplina , EmentaDisciplina , CargaHorariaDisciplina ) 
+							VALUES 
+							(  
+								'" . $indAluno . "' ,
+								'" . $_POST['nomeDisciplina'][$i] . "' , '" . $_POST['codigoDisciplina'][$i] . "',
+								'". $_POST['ementaDisciplina'][$i] ."' , 	 '" . $_POST['cargaHorariaDisciplina'][$i] . "'															
+							) "	;				
 							
-				$indDisc = $gDisciplinas[$i];
-				
-				$rs = mysql_query("INSERT INTO r_alunos_disciplinas (ALUNOS_CdIdeAlu, DISCIPLINAS_CdIdeDis ) 
-																VALUES ( '" . $indAluno . "' , '" . $indDisc . "') ");
-			 
-			}
+		$rs = mysql_query($sql);
+
 	}
+	
 	
 ?>	

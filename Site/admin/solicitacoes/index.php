@@ -64,13 +64,13 @@
 
 	for($i=0;$i<$linhas;$i++){
 		$idFacul = utf8_encode(mysql_result($rs,$i,'FACULDADES_CdIdeFacul'));
-		$result = mysql_query("SELECT CdIdeFacul, NmIdeFacul from faculdades where CdIdeFacul = ".$idFacul."");
+		$result = mysql_query("SELECT CdIdeFacul, NmIdeFacul from faculdades where CdIdeFacul = '".$idFacul."';");
 		while($row = mysql_fetch_array($result)){
 			$nmFaculdade = utf8_encode($row["NmIdeFacul"]);
 		}
 		
 		$iDcurso = utf8_encode(mysql_result($rs,$i,'CURSOS_CdIdeCurso'));
-		$result = mysql_query("SELECT CdIdeCur, NmIdeCur from cursos where CdIdeCur  = ".$iDcurso."");
+		$result = mysql_query("SELECT CdIdeCur, NmIdeCur from cursos where CdIdeCur  = '".$iDcurso."';");
 		while($row = mysql_fetch_array($result)){
 			$nmCurso = utf8_encode($row["NmIdeCur"]);
 		}

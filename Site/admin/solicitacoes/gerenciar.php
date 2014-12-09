@@ -47,7 +47,7 @@
 		while($row = mysql_fetch_array($result)){
 			
 			$idFacul = utf8_encode($row["FACULDADES_CdIdeFacul"]);
-			$result1 = mysql_query("SELECT CdIdeFacul, NmIdeFacul from faculdades where CdIdeFacul = ".$idFacul."");
+			$result1 = mysql_query("SELECT CdIdeFacul, NmIdeFacul from faculdades where CdIdeFacul = '".$idFacul."';");
 			while($row1 = mysql_fetch_array($result1)){
 				$nmFaculdade = utf8_encode($row1["NmIdeFacul"]);
 			}
