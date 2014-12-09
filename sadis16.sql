@@ -197,9 +197,9 @@ CREATE TABLE `r_alunos_disciplinas` (
   `CdIdeDisAlu` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ALUNOS_CdIdeAlu` int(11) NOT NULL,
   `NmIdeDisciplina` varchar(45) NOT NULL,
-  `CodDisciplina` varchar(45) DEFAULT NULL,
-  `EmentaDisciplina` varchar(256) DEFAULT NULL,
-  `CargaHorariaDisciplina` int(11) DEFAULT NULL,
+  `CodDisciplina` varchar(45) NULL,
+  `CargaHorariaDisciplina` int(11) NOT NULL,
+  `ComentarioDisciplina` varchar(256) NULL,
   PRIMARY KEY (`CdIdeDisAlu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

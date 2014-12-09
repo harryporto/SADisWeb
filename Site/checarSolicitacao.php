@@ -12,9 +12,9 @@
 	    $jsonArray = array();
 	    while($row = mysql_fetch_array($result)){
 	      $jsonArray['data'][] = array(
-	        "date"    => utf8_encode(""),
+	        "date"    => utf8_encode($row["Abertura"]),
       	  "status"  => utf8_encode($row["StatusSolic"]),
-      	  "message" => utf8_encode("")
+      	  "message" => utf8_encode(!!)
       	);
 	    }
 	  }

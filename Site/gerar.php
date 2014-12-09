@@ -10,6 +10,21 @@
 <?php 
   require_once("db.php");
 
+  if (!(isset($_POST['codigo'])&&
+      isset($_POST['nome'])&&
+      isset($_POST['email'])&&
+      isset($_POST['matricula'])&&
+      isset($_POST['telefone'])&&
+      isset($_POST['faculdade'])&&
+      isset($_POST['idFaculdade'])&&
+      isset($_POST['curso'])&&
+      isset($_POST['nomeDisciplina'])
+    )){
+    // TODO throw error
+    header('Location: index.html');
+    die();
+  }
+
   $codigo = strip_tags(mysql_real_escape_string($_POST['codigo'],$con));
   $nome = strip_tags(mysql_real_escape_string($_POST['nome'],$con));
   $email = strip_tags(mysql_real_escape_string($_POST['email'],$con));
@@ -19,7 +34,6 @@
   $idFaculdade = strip_tags(mysql_real_escape_string($_POST["idFaculdade"],$con));
   $idCurso = strip_tags(mysql_real_escape_string($_POST["curso"],$con));
   $status = "Em andamento";
-  //$comments = $_POST["comments"];
 
   // consulta os dados através dos indices do curso
   $result = mysql_query("SELECT * from faculdades where CdIdeFacul  = '".$idFaculdade."';");
@@ -40,14 +54,7 @@
   }
 
   // Se a insercao nao e repetida, insira a solicitacao no banco de dados
-  $result = mysql_query("SELECT * FROM solicitacoes WHERE NmIdeAluno='".$nome."' AND 
-  	CURSOS_CdIdeCurso='".$idCurso."' AND 
-  	FACULDADES_CdIdeFacul='".$idFaculdade."' AND
-    TelIdeAluno='".$telefone."' AND
-    EmailIdeAluno='".$email."' AND
-    MatIdeAluno='".$matricula."' AND
-    StatusSolic='".$status."' AND
-    CodSolic='".$codigo."';");
+  $result = mysql_query("SELECT * FROM solicitacoes WHERE CodSolic='".$codigo."';");
   if (mysql_num_rows($result) == 0){
     $sql = "INSERT INTO  solicitacoes 
                     (
