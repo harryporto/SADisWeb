@@ -152,10 +152,13 @@
               <input type="hidden" name="faculdade" value="<?php echo $nmFaculdade;?>">
               <input type="hidden" name="idFaculdade" value="<?php echo $idFaculdade;?>">
               <input type="hidden" name="curso" value="<?php echo $IdCurso;?>">
-              <input type="hidden" name="nomeDisciplina" value='<?php echo base64_encode(serialize($_POST['nomeDisciplina']));?>'>
-              <input type="hidden" name="codigoDisciplina" value='<?php echo base64_encode(serialize($_POST['codigoDisciplina']));?>'>
-              <input type="hidden" name="cargaHorariaDisciplina" value='<?php echo base64_encode(serialize($_POST['cargaHorariaDisciplina']));?>'>
-              <input type="hidden" name="comentarioDisciplina" value='<?php echo base64_encode(serialize($_POST['comentarioDisciplina']));?>'>
+              <?php for ($i = 1; $i <= $numDisc; $i += 1){ ?>
+                <input type="hidden" name="nomeDisciplina<?php echo $i;?>" value='<?php echo $_POST['nomeDisciplina'.$i]; ?>'>
+                <input type="hidden" name="codigoDisciplina<?php echo $i;?>" value='<?php echo $_POST['codigoDisciplina'.$i]; ?>'>
+                <input type="hidden" name="cargaHorariaDisciplina<?php echo $i;?>" value='<?php echo $_POST['cargaHorariaDisciplina'.$i]; ?>'>
+                <input type="hidden" name="comentarioDisciplina<?php echo $i;?>" value='<?php echo $_POST['comentarioDisciplina'.$i]; ?>'>
+              <?php } ?>
+              <input type="hidden" name="num_files" value="<?php echo $numDisc;?>">
               <input type="hidden" name="codigo" value="<?php echo $codigo;?>">
               <input type="hidden" name="files" value='<?php echo serialize($files);?>'>
 

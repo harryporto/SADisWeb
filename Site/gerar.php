@@ -131,7 +131,7 @@
 	
 	$disciplinasEncontradas = mysql_query("SELECT r_alunos_disciplinas.CdIdeDisAlu FROM r_alunos_disciplinas JOIN solicitacoes ON solicitacoes.CdIdeAluno = r_alunos_disciplinas.ALUNOS_CdIdeAlu WHERE solicitacoes.CodSolic='".$codigo."';");
 	$disciplinasNovas = mysql_fetch_row($disciplinasEncontradas);
-	$disciplina = $row[0];
+	$disciplina = $disciplinasNovas[0];
   
 	$mensagem = "<html>
 	<table width='510' border='1' cellpadding='1' cellspacing='1' bgcolor='#CCCCCC'>

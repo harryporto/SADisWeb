@@ -66,7 +66,7 @@
 			while($row3 = mysql_fetch_array($result3))
 			{ 
  
-				$disc2 .= utf8_encode($row3['NmIdeDisciplina'])." ".utf8_encode($row3['EmentaDisciplina'])." ".utf8_encode($row3['CargaHorariaDisciplina'])."<br>";
+				$disc2 .= utf8_encode($row3['NmIdeDisciplina']).", ".utf8_encode($row3['CargaHorariaDisciplina'])." horas<br>";
 
 			}
 			
@@ -74,9 +74,14 @@
 			$telefone = utf8_encode($row["TelIdeAluno"]);
 			$email = utf8_encode($row["EmailIdeAluno"]);
 			$matricula = utf8_encode($row["MatIdeAluno"]);
-			$comprovante = "<a href=uploads/".utf8_encode($row["CompAluno"])."><button >ver</button></a>";
 			$status = utf8_encode($row["StatusSolic"]);
 			$codigo = utf8_encode($row["CodSolic"]);
+
+			$files = scandir("uploads");
+			$comprovantes = array();
+			foreach($files as $file){
+				if (preg_match("/".$row["CodSolic"]."_[0-9]*\.\w+/", $file, $match)) $comprovantes[] = $match[0];
+			}
 		}
 		
 		
@@ -116,7 +121,12 @@
 						<h2>Faculdade Atual </h2>  <?php echo $nmFaculdade;?><br><br>
 						<h2>Curso Solicitado </h2> <?php echo $nmCurso;?><br><br>
 						<h2>Disciplinas Cursadas</h2>  <?php echo $disc2;?><br><br>
-						<h2>Comprovante</h2>  <?php echo $comprovante;?><br><br>
+						<h2>Comprovantes</h2>  
+						<?php //echo $comprovante;
+						  foreach ($comprovantes as $comprovante)
+							echo "<a href=uploads/".$comprovante."><font color=D2691E>".$comprovante."</font></a><br>";
+						?>
+						<br><br>
 						<h2>Status</h2>  <?php echo $status;?><br><br>
 						<h2>Código da Solicitação</h2>  <?php echo $codigo;?><br><br>
 						
