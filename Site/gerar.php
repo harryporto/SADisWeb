@@ -10,21 +10,6 @@
 <?php 
   require_once("db.php");
 
-  if (!(isset($_POST['codigo'])&&
-      isset($_POST['nome'])&&
-      isset($_POST['email'])&&
-      isset($_POST['matricula'])&&
-      isset($_POST['telefone'])&&
-      isset($_POST['faculdade'])&&
-      isset($_POST['idFaculdade'])&&
-      isset($_POST['curso'])&&
-      isset($_POST['nomeDisciplina'])
-    )){
-    // TODO throw error
-    header('Location: index.html');
-    die();
-  }
-
   $codigo = strip_tags(mysql_real_escape_string($_POST['codigo'],$con));
   $nome = strip_tags(mysql_real_escape_string($_POST['nome'],$con));
   $email = strip_tags(mysql_real_escape_string($_POST['email'],$con));
@@ -34,6 +19,7 @@
   $idFaculdade = strip_tags(mysql_real_escape_string($_POST["idFaculdade"],$con));
   $idCurso = strip_tags(mysql_real_escape_string($_POST["curso"],$con));
   $status = "Em andamento";
+  //$comments = $_POST["comments"];
 
   // consulta os dados através dos indices do curso
   $result = mysql_query("SELECT * from faculdades where CdIdeFacul  = '".$idFaculdade."';");
@@ -54,7 +40,14 @@
   }
 
   // Se a insercao nao e repetida, insira a solicitacao no banco de dados
-  $result = mysql_query("SELECT * FROM solicitacoes WHERE CodSolic='".$codigo."';");
+  $result = mysql_query("SELECT * FROM solicitacoes WHERE NmIdeAluno='".$nome."' AND 
+  	CURSOS_CdIdeCurso='".$idCurso."' AND 
+  	FACULDADES_CdIdeFacul='".$idFaculdade."' AND
+    TelIdeAluno='".$telefone."' AND
+    EmailIdeAluno='".$email."' AND
+    MatIdeAluno='".$matricula."' AND
+    StatusSolic='".$status."' AND
+    CodSolic='".$codigo."';");
   if (mysql_num_rows($result) == 0){
     $sql = "INSERT INTO  solicitacoes 
                     (
@@ -126,53 +119,60 @@
             <h2> Código da Solicitação para acompanhamento: <?php echo $codigo;?></h2></br>
 <?php 
   
-  $mensagem = "<html>
-  <table width='510' border='1' cellpadding='1' cellspacing='1' bgcolor='#CCCCCC'>
-    <tr>
-      <td>
-        <tr>
-          <td width='500'>Foi aberta uma solicitação de aproveitamento de disciplinas em seu colegiado </td>
-        </tr>
+	$faculdadeQuery = mysql_query("SELECT faculdades.NmIdeFacul FROM solicitacoes JOIN faculdades ON solicitacoes.FACULDADES_CdIdeFacul = faculdades.CdIdeFacul WHERE solicitacoes.CodSolic='".$codigo."';");
+	$faculdadeRetornada = mysql_fetch_row($faculdadeQuery);
+	$faculdade = $faculdadeRetornada[0];
+	
+	
+	$cursos = mysql_query("SELECT cursos.NmIdeCur FROM cursos JOIN solicitacoes ON solicitacoes.CURSOS_CdIdeCurso = cursos.CdIdeCur WHERE solicitacoes.CodSolic='".$codigo."';");
+	$cursoRetornado = mysql_fetch_row($cursos);
+	$curso = $cursoRetornado[0];
+	
+	
+	$disciplinasEncontradas = mysql_query("SELECT r_alunos_disciplinas.CdIdeDisAlu FROM r_alunos_disciplinas JOIN solicitacoes ON solicitacoes.CdIdeAluno = r_alunos_disciplinas.ALUNOS_CdIdeAlu WHERE solicitacoes.CodSolic='".$codigo."';");
+	$disciplinasNovas = mysql_fetch_row($disciplinasEncontradas);
+	$disciplina = $row[0];
+  
+	$mensagem = "<html>
+	<table width='510' border='1' cellpadding='1' cellspacing='1' bgcolor='#CCCCCC'>
+			    <tr>
+                     <td width='500'>Foi aberta uma solicitação de aproveitamento de disciplinas em seu colegiado </td>
+              </tr>
              
-        <tr>
-          <td width='320'>Nome:$nome</td>
-        </tr>
-       
-        <tr>
-          <td width='320'>Matricula:$matricula</td>
-        </tr>
-          
-        <tr>
-          <td width='320'>Telefone:$telefone</td>
-        </tr>
-          
-        <tr>
-          <td width='320'>Email:$email</td>
-        </tr>
-      
-        <tr>
-          <td width='320'>Código de Acompanhamento:<b>$codigo</b></td>
-        </tr>
-         
-        <tr>
-          <td width='320'>Faculdade de Origem:</td>
-        </tr>
-         
-        <tr>
-          <td width='320'>Curso Solicitado:</td>
-        </tr>
-        <tr>
-          <td width='320'>Nível:</td>
-        </tr>                
-      </td>
-    </tr>  
+              	 <tr>
+                      <td width='320'>Nome:$nome</td>
+    	         </tr>
+             
+              <tr>
+                      <td width='320'>Matricula:$matricula</td>
+    	        </tr>
+                
+                 <tr>
+                      <td width='320'>Telefone:$telefone</td>
+    	        </tr>
+                
+                 <tr>
+                      <td width='320'>Email:$email</td>
+    	        </tr>
+    				
+                <tr>
+                      <td width='320'>Código de Acompanhamento:<b>$codigo</b></td>
+              </tr>
+               
+               <tr>
+                      <td width='320'>Faculdade de Origem:$faculdade</td>
+    	       </tr>
+               
+               <tr>
+                      <td width='320'>Curso Solicitado:$curso</td>
+    	       </tr>
   </table>
 </html>
-  ";
-
+	";
+	
   $emailenviar = $email;
   $destino = $email;
-  $assunto = "Abertura de solicitação de aprveitamento de disciplina";
+  $assunto = "Abertura de solicitação de aproveitamento de disciplina";
 
   // É necessário indicar que o formato do e-mail é html
   $headers  = 'MIME-Version: 1.0' . "\r\n";
