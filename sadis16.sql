@@ -256,6 +256,7 @@ CREATE TABLE `solicitacoes` (
   `StatusSolic` varchar(45) NOT NULL,
   `CodSolic` varchar(45) NOT NULL,
   `Abertura` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `Mensagem` varchar(256) NULL,
   PRIMARY KEY (`CdIdeAluno`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
