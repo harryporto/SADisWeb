@@ -55,10 +55,10 @@
       for (i = parseInt($(this).parent('div').attr("value")); i < x; i++){
         var prevVal = parseInt(it.attr("value"));
         it.attr("value", prevVal-1);
-        it.find(".input_field_name").attr("name", "input_field_name_"+(prevVal-1));
-        it.find(".input_field_code").attr("name", "input_field_code_"+(prevVal-1));
-        it.find(".input_field_ch").attr("name", "input_field_ch_"+(prevVal-1));
-        it.find(".input_field_comments").attr("name", "input_field_comments_"+(prevVal-1));
+        it.find(".input_field_name").attr("name", "nomeDisciplina"+(prevVal-1));
+        it.find(".input_field_code").attr("name", "codigoDisciplina"+(prevVal-1));
+        it.find(".input_field_ch").attr("name", "cargaHorariaDisciplina"+(prevVal-1));
+        it.find(".input_field_comments").attr("name", "comentarioDisciplina"+(prevVal-1));
         it.find(".userfile").attr("name", "userfile"+(prevVal-1));
         it = it.next();
       }
@@ -75,14 +75,14 @@
         $(".hidden_size").attr("value", parseInt(x));
 
         $(wrapper).append('<div class="input_field" value="'+x+'">'
-        +' Nome<font color="#FF0000">*</font>: <input class="input_field_name" id="input_field_name_'+x+'" type="text" name="nomeDisciplina'+x+'"/>'
-        +' Código<font color="#FF0000">*</font>: <input class="input_field_code" id="input_field_code_'+x+'" type="text" name="codigoDisciplina'+x+'"/>'
-        +' Carga Horária<font color="#FF0000">*</font>: <input class="input_field_ch" id="input_field_ch_'+x+'" type="text" name="cargaHorariaDisciplina'+x+'"/>'
+        +' Nome<font color="#FF0000">*</font>: <input class="input_field_name" type="text" name="nomeDisciplina'+x+'"/>'
+        +' Código<font color="#FF0000">*</font>: <input class="input_field_code" type="text" name="codigoDisciplina'+x+'"/>'
+        +' Carga Horária<font color="#FF0000">*</font>: <input class="input_field_ch" type="text" name="cargaHorariaDisciplina'+x+'"/>'
         +' <a href="#" class="remove_field"><button class="rem_field_but">Remover Disciplina</button></a>'
         +' <br>'
         +' <br>'
         +' <span class="comments">Observações: <textarea class="input_field_comments" id="input_field_comments_'+x+'" rows="6" cols="37" name="comentarioDisciplina'+x+'"></textarea></span>'
-        +' <span class="upload_area">Ementa<font color="#FF0000">*</font>: <input id="input_field_file_'+x+'" class="userfile" name="userfile'+x+'" type="file" /></span></div>'); 
+        +' <span class="upload_area">Ementa<font color="#FF0000">*</font>: <input class="userfile" name="userfile'+x+'" type="file" /></span></div>'); 
       }
     });
   });
@@ -144,11 +144,11 @@
     }
 
     function checarDisciplinas(){
-      for (i = 0; i < x; i++){
-        if (($("#input_field_name_"+x).val() == "") ||
-            ($("#input_field_code_"+x).val() == "") ||
-            ($("#input_field_ch_"+x).val() == "") ||
-            ($("#input_field_file_"+x).val() == "")){
+      for (i = 1; i <= x; i++){
+        if (($("[name='nomeDisciplina"+x+"']").val() == "") ||
+            ($("[name='codigoDisciplina"+x+"']").val() == "") ||
+            ($("[name='cargaHorariaDisciplina"+x+"']").val() == "") ||
+            ($("[name='userfile"+x+"']").val() == "")){
           return false;
         }
       }
@@ -539,13 +539,13 @@
               <input type="hidden" class="hidden_size" name="num_files" value="1">
               <div class="input_fields_wrap">
               <div class="input_field" value="1">
-                Nome<font color="#FF0000">*</font>: <input class="input_field_name" id="input_field_name_1"  type="text" name="nomeDisciplina1">
-                Código<font color="#FF0000">*</font>: <input class="input_field_code" id="input_field_code_1"  type="text" name="codigoDisciplina1">
-                Carga Horária<font color="#FF0000">*</font>: <input class="input_field_ch" id="input_field_ch_1" type="text" name="cargaHorariaDisciplina1">
+                Nome<font color="#FF0000">*</font>: <input class="input_field_name" type="text" name="nomeDisciplina1">
+                Código<font color="#FF0000">*</font>: <input class="input_field_code" type="text" name="codigoDisciplina1">
+                Carga Horária<font color="#FF0000">*</font>: <input class="input_field_ch" type="text" name="cargaHorariaDisciplina1">
                 <br>
                 <br>
                 <span class="comments">Observações: <textarea class="input_field_comments" id="input_field_comments_1" rows="6" cols="37" name="comentarioDisciplina1"></textarea></span>
-                <span class="upload_area">Ementa<font color="#FF0000">*</font>: <input id="input_field_file_1" class="userfile" name="userfile1" type="file" /></span>
+                <span class="upload_area">Ementa<font color="#FF0000">*</font>: <input class="userfile" name="userfile1" type="file" /></span>
               </div>
               </div>
 
