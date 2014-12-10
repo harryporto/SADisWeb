@@ -119,53 +119,62 @@
             <h2> Código da Solicitação para acompanhamento: <?php echo $codigo;?></h2></br>
 <?php 
   
-  $mensagem = "<html>
-  <table width='510' border='1' cellpadding='1' cellspacing='1' bgcolor='#CCCCCC'>
-    <tr>
-      <td>
-        <tr>
-          <td width='500'>Foi aberta uma solicitação de aproveitamento de disciplinas em seu colegiado </td>
-        </tr>
+	$faculdadeQuery = mysql_query("SELECT faculdades.NmIdeFacul FROM solicitacoes JOIN faculdades ON solicitacoes.FACULDADES_CdIdeFacul = faculdades.CdIdeFacul WHERE solicitacoes.CodSolic='".$codigo."';");
+	$faculdadeRetornada = mysql_fetch_row($faculdadeQuery);
+	$faculdade = $faculdadeRetornada[0];
+	
+	
+	$cursos = mysql_query("SELECT cursos.NmIdeCur FROM cursos JOIN solicitacoes ON solicitacoes.CURSOS_CdIdeCurso = cursos.CdIdeCur WHERE solicitacoes.CodSolic='".$codigo."';");
+	$cursoRetornado = mysql_fetch_row($cursos);
+	$curso = $cursoRetornado[0];
+	
+	
+	$disciplinasEncontradas = mysql_query("SELECT r_alunos_disciplinas.CdIdeDisAlu FROM r_alunos_disciplinas JOIN solicitacoes ON solicitacoes.CdIdeAluno = r_alunos_disciplinas.ALUNOS_CdIdeAlu WHERE solicitacoes.CodSolic='".$codigo."';");
+	$disciplinasNovas = mysql_fetch_row($disciplinasEncontradas);
+	$disciplina = $row[0];
+  
+	$mensagem = "<html>
+	<table width='510' border='1' cellpadding='1' cellspacing='1' bgcolor='#CCCCCC'>
+			    <tr>
+                     <td width='500'>Foi aberta uma solicitação de aproveitamento de disciplinas em seu colegiado </td>
+              </tr>
              
-        <tr>
-          <td width='320'>Nome:$nome</td>
-        </tr>
-       
-        <tr>
-          <td width='320'>Matricula:$matricula</td>
-        </tr>
-          
-        <tr>
-          <td width='320'>Telefone:$telefone</td>
-        </tr>
-          
-        <tr>
-          <td width='320'>Email:$email</td>
-        </tr>
-      
-        <tr>
-          <td width='320'>Código de Acompanhamento:<b>$codigo</b></td>
-        </tr>
-         
-        <tr>
-          <td width='320'>Faculdade de Origem:</td>
-        </tr>
-         
-        <tr>
-          <td width='320'>Curso Solicitado:</td>
-        </tr>
-        <tr>
-          <td width='320'>Nível:</td>
-        </tr>                
-      </td>
-    </tr>  
+              	 <tr>
+                      <td width='320'>Nome:$nome</td>
+    	         </tr>
+             
+              <tr>
+                      <td width='320'>Matricula:$matricula</td>
+    	        </tr>
+                
+                 <tr>
+                      <td width='320'>Telefone:$telefone</td>
+    	        </tr>
+                
+                 <tr>
+                      <td width='320'>Email:$email</td>
+    	        </tr>
+    				
+                <tr>
+                      <td width='320'>Código de Acompanhamento:<b>$codigo</b></td>
+              </tr>
+               
+               <tr>
+                      <td width='320'>Faculdade de Origem:$faculdade</td>
+    	       </tr>
+               
+               <tr>
+                      <td width='320'>Curso Solicitado:$curso</td>
+    	       </tr>
+    	       		  <td width='320'>Disciplinas:$disciplina</td>
+				</tr> 
   </table>
 </html>
-  ";
-
+	";
+	
   $emailenviar = $email;
   $destino = $email;
-  $assunto = "Abertura de solicitação de aprveitamento de disciplina";
+  $assunto = "Abertura de solicitação de aproveitamento de disciplina";
 
   // É necessário indicar que o formato do e-mail é html
   $headers  = 'MIME-Version: 1.0' . "\r\n";

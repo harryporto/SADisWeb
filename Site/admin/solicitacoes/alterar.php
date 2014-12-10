@@ -52,6 +52,42 @@
 		// O FORMULARIO FOI POSTADO
 		$sql = "UPDATE solicitacoes SET StatusSolic='" . $status. "'  WHERE CdIdeAluno=" . $id;					
 		$rs = mysql_query($sql);
+
+//envio de email
+		$nomeQuery = mysql_query("SELECT NmIdeAluno FROM solicitacoes WHERE CdIdeAluno='".$id."';");
+		$nomeRetornado = mysql_fetch_row($nomeQuery);
+		$nome = $nomeRetornado[0];
+		
+
+		$codigoQuery = mysql_query("SELECT CodSolic FROM solicitacoes WHERE CdIdeAluno='".$id."';");
+		$codigoRetornado = mysql_fetch_row($codigoQuery);
+		$codigo = $codigoRetornado[0];
+		
+
+
+		$mensagem = "<h1> Prezado(a) $nome, o status da sua solicitação de aprovaitamento de disciplinas de código $codigo foi alterado para $status </h1>";
+
+		echo $mensagem;
+
+		$emailenviar = $email;	
+		$destino = $email;
+		$assunto = "Alteração no status da solicitação de aproveitamento de disciplinas ";
+		
+
+		// É necessário indicar que o formato do e-mail é html
+		$headers  = 'MIME-Version: 1.0' . "\r\n";
+		$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+		$headers .= 'From: Sadis<sadisweb@gmail.br>';
+		
+
+		$enviaremail = mail($destino, $assunto, $mensagem, $headers);
+		if($enviaremail){
+			echo "<h2>Um email foi enviado com para acompanhamento do processo.</h2>";
+		} else {
+			echo "<h2>Houve uma falha no envio do email de alteração</h2>";
+		}
+
+
 		
 		header("Location: index.php");
 
@@ -90,8 +126,9 @@
 							
 							<h2>Status: </h2>
 							<select name="StatusSolic">
-								<option value="Para Conhecimento" > Para Conhecimento </option>             
+								<option value="Para Conhecimento" > Em andamento </option>             
 								<option value="Em avaliação" > Em avaliação </option>             
+								<option value="Presença do(a) aluno(a) requerida" > Presença do(a) aluno(a) requerida </option>             								
 								<option value="Indeferido" > Indeferido </option>             
 								<option value="Deferido" > Deferido </option>                 
 								<option value="Deferindo Presencialmente" > Deferindo Presencialmente </option>             								                                                     
