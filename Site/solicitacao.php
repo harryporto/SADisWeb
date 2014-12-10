@@ -6,6 +6,10 @@
   <link rel="stylesheet" href="css/style.css" type='text/css' /> 
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'><!-- GoogleFonts -->
   <script src="js/jquery-1.10.2.min.js"></script>
+
+  <link href="js/jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet">
+  <script src="js/jquery-ui-1.11.2.custom/external/jquery/jquery.js"></script>
+  <script src="js/jquery-ui-1.11.2.custom/jquery-ui.js"></script>
 </head>
 
 <script>
@@ -36,6 +40,8 @@
 
 <script type="text/javascript">
   var x = 1;
+  var uniList = [];
+  var uniId = [];
 
   $(document).ready(function() {
     // Fill universities data
@@ -88,9 +94,7 @@
   });
 
   function getUniversities(){
-    var universities = document.getElementById("universitySelect");
     document.getElementById("countrySelect").disabled = true;
-    universities.disabled = true;
     var university = document.getElementById("countrySelect").value;
 
     if (university == "US"){
@@ -99,34 +103,25 @@
 
     $.getJSON("pegarUniversidades.php", {location: university}, function(json){
       // Empty previous university list
-      $("#universitySelect").empty();
+      uniList = [];
+      uniId = [];
 
       if (json){
-        var option = document.createElement("option");
-        option.value = 0;
-        option.selected = "selected";
-        option.text = "Selecione..."
-        universities.add(option);
-
         if (university != "US"){
           $.each(json, function (id, elem) {
-            option = document.createElement("option");
-            option.text = elem.name;
-            option.value = elem.id+elem.name;
-            universities.add(option);
+            uniList.push(elem.name);
+            uniId.push(elem.id);
           });
         } else {
           $.each(json, function (id1, elem1) {
             $.each(elem1, function (id2, elem2) {
-              option = document.createElement("option");
-              option.text = elem2.name;
-              option.value = elem2.id+elem2.name;
-              universities.add(option);
+              uniList.push(elem2.name);
+              uniId.push(elem2.id);
             });
           });
         }
 
-        universities.disabled = false;
+        $("#autocomplete").autocomplete({ source: uniList });
       }
 
       document.getElementById("countrySelect").disabled = false;
@@ -173,10 +168,20 @@
         alert("Por favor insira a matricula do estudante");
         return false;
       }
-      if (formulario.Faculdade.value == 0 ){
+      if (formulario.Faculdade.value.length == 0 ){
         alert("Por favor selecione uma faculdade");
         return false;
       }
+      var found = false;
+      var i;
+      for (i = 0; i < uniList.length; i++){
+        if (uniList[i] == $("#autocomplete").val()){
+          found = true;
+          $("#idFacul").attr("value", uniId[i]);
+          break;
+        }
+      }
+      if (found == false) return false;
       if (formulario.CURSO.value == 0 ){
         alert("Por favor selecione um curso");
         return false;
@@ -498,17 +503,8 @@
 
               <br><font color="#000" face="arial, verdana, helvetica"size="2px">Faculdade de Origem</font><font color="#FF0000">*</font><br><p>
 
-              <select id="universitySelect" name="Faculdade">
-<!--                <option value="0" selected="selected"> Selecione... </option>  
-                <?php 
-                  $result = mysql_query("SELECT CdIdeFacul  , NmIdeFacul from faculdades  ");
-                  while($row = mysql_fetch_array($result))
-                  { ?><option value="<?php echo utf8_encode($row['CdIdeFacul']);?>" > <?php echo utf8_encode($row['NmIdeFacul']);?> </option>             
-                <?php
-                  }
-                ?>    
--->                                            
-              </select>
+              <input id="autocomplete" title="Faculdade" name="Faculdade">
+              <input id="idFacul" type="hidden" name="idFaculdade">
               
               </br>  
               <br />
