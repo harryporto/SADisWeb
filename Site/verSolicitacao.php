@@ -32,13 +32,12 @@
 $data = $tempData["data"];
 							  for($i = 0; $i < sizeof($data); $i++){
 							    if ($data[$i]["date"] != ""){
-							      echo "Data: ";
-    							  echo $data[$i]["date"];
     							  echo "</br>Status: ";
     							  echo utf8_decode($data[$i]["status"]);
-    							  echo "</br>Mensagem: ";
-    							  echo utf8_decode($data[$i]["message"]);
-    							  echo "</br>";
+							      echo "</br>Data: ";
+    							  echo $data[$i]["date"];
+    							  $msg = utf8_decode($data[$i]["message"]);
+    							  if ($msg != "") echo "</br>Mensagem: ".$msg."</br>";
     							}
     							// If got error message
     							else{

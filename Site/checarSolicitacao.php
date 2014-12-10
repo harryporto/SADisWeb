@@ -7,8 +7,16 @@
   if (isset($_GET['CodSolic'])){
     $codigo = mysql_real_escape_string($_GET['CodSolic']);
 
-    $result = mysql_query("SELECT StatusSolic FROM solicitacoes WHERE CodSolic =".$codigo.";");
+    $result = mysql_query("SELECT StatusSolic, Abertura, Mensagem FROM solicitacoes WHERE CodSolic =".$codigo.";");
     if ($result){
+      $jsonArray = array();
+      while ($row = mysql_fetch_array($result)){
+        $jsonArray['data'][] = array(
+          "date"    => utf8_encode($row["Abertura"]),
+          "status"  => utf8_encode($row["StatusSolic"]),
+          "message" => utf8_encode($row["Mensagem"])
+        );
+      }
     }
   }  
     
