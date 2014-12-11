@@ -11,6 +11,28 @@
   require_once("db.php");
   error_reporting(0);
 
+  // If there's a not set field
+  if (!(isset($_POST["Nome"])&&
+    isset($_POST["Telefone"])&&
+    isset($_POST["Email"])&&
+    isset($_POST["Matricula"])&&
+    isset($_POST["Faculdade"])&&
+    isset($_POST["CURSO"])&&
+    isset($_POST["num_files"])
+    )){
+    // TODO throw error
+    header('Location: index.html');
+    die();
+  }
+
+  // Create code
+  $result = mysql_query("SELECT MAX(CdIdeDisAlu) FROM r_alunos_disciplinas;");
+  if (mysql_num_rows($result) == 0) $codigo = sprintf("%08d", 1);
+  else{
+    $row = mysql_fetch_array($result);
+    $codigo = sprintf("%08d", ((int)$row[0])+1);
+  }
+
   //Tratamento SQL-Injection
   $nome = $_POST["Nome"];
   $telefone = $_POST["Telefone"];
@@ -26,19 +48,9 @@
   $matricula = strip_tags(mysql_real_escape_string($matricula,$con));  
   $nmFaculdade = strip_tags(mysql_real_escape_string($nmFaculdade,$con));  
   $IdCurso = strip_tags(mysql_real_escape_string($IdCurso,$con));  
-  $codigo = rand(); // TODO nao usar randomico
   $idFaculdade = substr($nmFaculdade, 0, 5);
   $nmFaculdade = substr($nmFaculdade, 5);
 
-  // Salva todos os comentarios em uma array
-  $comments = array();
-  /*for ($i = 0; $i < $numDisc; $i++){
-    if (isset($_POST["comments"]))
-      push_array($comments, strip_tags(mysql_real_escape_string($_POST["comments"],$con)));
-    else
-      push_array($comments, "");
-  }*/
-  
   //Imagem 
   $uploaddir = 'admin/solicitacoes/uploads_temp/';
   $erro = $config = $files = array();
@@ -140,7 +152,13 @@
               <input type="hidden" name="faculdade" value="<?php echo $nmFaculdade;?>">
               <input type="hidden" name="idFaculdade" value="<?php echo $idFaculdade;?>">
               <input type="hidden" name="curso" value="<?php echo $IdCurso;?>">
-              <input type="hidden" name="disciplinas" value="<?php echo $_POST['disciplinas'];?>">
+              <?php for ($i = 1; $i <= $numDisc; $i += 1){ ?>
+                <input type="hidden" name="nomeDisciplina<?php echo $i;?>" value='<?php echo $_POST['nomeDisciplina'.$i]; ?>'>
+                <input type="hidden" name="codigoDisciplina<?php echo $i;?>" value='<?php echo $_POST['codigoDisciplina'.$i]; ?>'>
+                <input type="hidden" name="cargaHorariaDisciplina<?php echo $i;?>" value='<?php echo $_POST['cargaHorariaDisciplina'.$i]; ?>'>
+                <input type="hidden" name="comentarioDisciplina<?php echo $i;?>" value='<?php echo $_POST['comentarioDisciplina'.$i]; ?>'>
+              <?php } ?>
+              <input type="hidden" name="num_files" value="<?php echo $numDisc;?>">
               <input type="hidden" name="codigo" value="<?php echo $codigo;?>">
               <input type="hidden" name="files" value='<?php echo serialize($files);?>'>
 

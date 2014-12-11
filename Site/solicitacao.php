@@ -34,9 +34,10 @@
   }
 </script>
 
-<script>
-  $(document).ready(function() {
+<script type="text/javascript">
+  var x = 1;
 
+  $(document).ready(function() {
     // Fill universities data
     getUniversities();
 
@@ -44,8 +45,6 @@
     var wrapper         = $(".input_fields_wrap"); 
     var add_button      = $(".add_field_button"); 
      
-    var x = 1;
-
     $(wrapper).on("click",".remove_field", function(e){ 
       e.preventDefault(); 
       var it = $(this).parent('div').parent('div').children();
@@ -56,6 +55,10 @@
       for (i = parseInt($(this).parent('div').attr("value")); i < x; i++){
         var prevVal = parseInt(it.attr("value"));
         it.attr("value", prevVal-1);
+        it.find(".input_field_name").attr("name", "input_field_name_"+(prevVal-1));
+        it.find(".input_field_code").attr("name", "input_field_code_"+(prevVal-1));
+        it.find(".input_field_ch").attr("name", "input_field_ch_"+(prevVal-1));
+        it.find(".input_field_comments").attr("name", "input_field_comments_"+(prevVal-1));
         it.find(".userfile").attr("name", "userfile"+(prevVal-1));
         it = it.next();
       }
@@ -72,14 +75,14 @@
         $(".hidden_size").attr("value", parseInt(x));
 
         $(wrapper).append('<div class="input_field" value="'+x+'">'
-        +' Nome: <input type="text" name="mytext[]"/>'
-        +' Código: <input type="text" name="mytext[]"/>'
-        +' Carga Horária: <input type="text" name="mytext[]"/>'
+        +' Nome<font color="#FF0000">*</font>: <input class="input_field_name" id="input_field_name_'+x+'" type="text" name="nomeDisciplina'+x+'"/>'
+        +' Código<font color="#FF0000">*</font>: <input class="input_field_code" id="input_field_code_'+x+'" type="text" name="codigoDisciplina'+x+'"/>'
+        +' Carga Horária<font color="#FF0000">*</font>: <input class="input_field_ch" id="input_field_ch_'+x+'" type="text" name="cargaHorariaDisciplina'+x+'"/>'
         +' <a href="#" class="remove_field"><button class="rem_field_but">Remover Disciplina</button></a>'
         +' <br>'
         +' <br>'
-        +' <span class="comments">Observações: <textarea rows="6" cols="37" name="comment'+x+'"></textarea></span>'
-        +' <span class="upload_area">Ementa: <input class="userfile" name="userfile'+x+'" type="file" /></span></div>'); 
+        +' <span class="comments">Observações: <textarea class="input_field_comments" id="input_field_comments_'+x+'" rows="6" cols="37" name="comentarioDisciplina'+x+'"></textarea></span>'
+        +' <span class="upload_area">Ementa<font color="#FF0000">*</font>: <input id="input_field_file_'+x+'" class="userfile" name="userfile'+x+'" type="file" /></span></div>'); 
       }
     });
   });
@@ -129,6 +132,62 @@
       document.getElementById("countrySelect").disabled = false;
     })
   }
+
+    $('#Telefone').keyup(filterDigits);
+    $('#Matricula').keyup(filterDigits);  
+    
+    function filterDigits(){
+      if (/\D/g.test(this.value)){
+        // Filter non-digits from input value.
+        this.value = this.value.replace(/\D/g, '');
+      }
+    }
+
+    function checarDisciplinas(){
+      for (i = 0; i < x; i++){
+        if (($("#input_field_name_"+x).val() == "") ||
+            ($("#input_field_code_"+x).val() == "") ||
+            ($("#input_field_ch_"+x).val() == "") ||
+            ($("#input_field_file_"+x).val() == "")){
+          return false;
+        }
+      }
+
+      return true;
+    }
+    
+    function validar(formulario) {
+      if (formulario.Nome.value.length == 0 ){
+        alert("Por favor insira o nome do estudante");
+        return false;
+      }
+      if ((formulario.Telefone.value.length == 0 )||(formulario.Telefone.value.length < 8)){
+        alert("Por favor insira um telefone válido para contato. Ex: 7199999999");
+        return false;
+      }
+      if (formulario.Email.value.length == 0 ){
+        alert("Por favor insira um email para contato");
+        return false;
+      }
+      if (formulario.Matricula.value.length == 0 ){
+        alert("Por favor insira a matricula do estudante");
+        return false;
+      }
+      if (formulario.Faculdade.value == 0 ){
+        alert("Por favor selecione uma faculdade");
+        return false;
+      }
+      if (formulario.CURSO.value == 0 ){
+        alert("Por favor selecione um curso");
+        return false;
+      }
+      if (!checarDisciplinas()){
+        alert("Por favor preencha todos os campos marcados com (*) asterisco");
+        return false;
+      }
+
+      return true;
+    }
 
 </script>
 
@@ -469,7 +528,7 @@
               </br>  
               <br />
 
-                <font color="#000" face="arial, verdana, helvetica"size="2px">Nível</font><font color="#FF0000">*</font><br><p>
+                <font color="#000" face="arial, verdana, helvetica"size="2px">Nível</font><br><p>
                 <INPUT TYPE="radio" NAME="OPCAO" VALUE="op1"><font color="#000" face="arial"size="2px">Graduação</font>
                 <INPUT TYPE="radio" NAME="OPCAO" VALUE="op2"><font color="#000" face="arial"size="2px">Pós-Graduação</font><p><p>
                 
@@ -480,13 +539,13 @@
               <input type="hidden" class="hidden_size" name="num_files" value="1">
               <div class="input_fields_wrap">
               <div class="input_field" value="1">
-                Nome: <input type="text" name="mytext[]">
-                Código: <input type="text" name="mytext[]">
-                Carga Horária: <input type="text" name="mytext[]">
+                Nome<font color="#FF0000">*</font>: <input class="input_field_name" id="input_field_name_1"  type="text" name="nomeDisciplina1">
+                Código<font color="#FF0000">*</font>: <input class="input_field_code" id="input_field_code_1"  type="text" name="codigoDisciplina1">
+                Carga Horária<font color="#FF0000">*</font>: <input class="input_field_ch" id="input_field_ch_1" type="text" name="cargaHorariaDisciplina1">
                 <br>
                 <br>
-                <span class="comments">Observações: <textarea rows="6" cols="37" name="comment1"></textarea></span>
-                <span class="upload_area">Ementa: <input class="userfile" name="userfile1" type="file" /></span>
+                <span class="comments">Observações: <textarea class="input_field_comments" id="input_field_comments_1" rows="6" cols="37" name="comentarioDisciplina1"></textarea></span>
+                <span class="upload_area">Ementa<font color="#FF0000">*</font>: <input id="input_field_file_1" class="userfile" name="userfile1" type="file" /></span>
               </div>
               </div>
 
@@ -496,7 +555,7 @@
               <br />
               
                         
-              <button class="but but-rc but-shadow but-primary" type="submit"  onClick="if (!validacao()) return false;">enviar</button>
+              <button class="but but-rc but-shadow but-primary" type="submit">enviar</button>
 
             </form>
             <div class="clearfix"></div>
@@ -506,43 +565,3 @@
     </div>  
   </div>           
 </body>
-
-<script type="text/javascript">
-  $('#Telefone').keyup(filterDigits);
-  $('#Matricula').keyup(filterDigits);  
-  
-  function filterDigits(){
-    if (/\D/g.test(this.value)){
-      // Filter non-digits from input value.
-      this.value = this.value.replace(/\D/g, '');
-    }
-  }
-  
-  function validar(formulario) {
-    if (formulario.Faculdade.value == 0 ){
-      alert("Por favor selecione uma faculdade");
-      return false;
-    }
-
-    if (formulario.CURSO.value == 0 ){
-      alert("Por favor selecione um curso");
-      return false;
-    }
-
-    if (
-      (formulario.Nome.value.length == 0 ) ||
-      (formulario.Telefone.value.length == 0 ) ||
-      (formulario.Email.value.length == 0 ) ||
-      (formulario.Matricula.value.length == 0 )
-    ){
-      alert("Por favor preencha todos os campos.");
-      return false;
-    }
-    
-    if (formulario.Telefone.value.length < 8){
-      alert("Telefone inválido.");
-      return false;              
-    }    
-    return true;
-  }
-</script>

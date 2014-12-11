@@ -64,10 +64,12 @@
 		$codigo = $codigoRetornado[0];
 		
 
+		$emailBuscado = mysql_query("SELECT EmailIdeAluno FROM solicitacoes WHERE CdIdeAluno='".$id."';");
+		$emailRetornado = mysql_fetch_row($emailBuscado);
+		$email = $emailRetornado[0];
 
-		$mensagem = "<h1> Prezado(a) $nome, o status da sua solicitação de aprovaitamento de disciplinas de código $codigo foi alterado para $status </h1>";
 
-		echo $mensagem;
+		$mensagem = "<h3> Prezado(a) $nome, o status da sua solicitação de aprovaitamento de disciplinas de código $codigo foi alterado para $status </h3>";
 
 		$emailenviar = $email;	
 		$destino = $email;
@@ -155,4 +157,4 @@
 else {
 header("location: ../acessonegado.php");
 }
-?>     
+?>
