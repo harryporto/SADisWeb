@@ -6,6 +6,10 @@
   <link rel="stylesheet" href="css/style.css" type='text/css' /> 
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'><!-- GoogleFonts -->
   <script src="js/jquery-1.10.2.min.js"></script>
+
+  <link href="js/jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet">
+  <script src="js/jquery-ui-1.11.2.custom/external/jquery/jquery.js"></script>
+  <script src="js/jquery-ui-1.11.2.custom/jquery-ui.js"></script>
 </head>
 
 <script>
@@ -36,6 +40,8 @@
 
 <script type="text/javascript">
   var x = 1;
+  var uniList = [];
+  var uniId = [];
 
   $(document).ready(function() {
     // Fill universities data
@@ -55,10 +61,10 @@
       for (i = parseInt($(this).parent('div').attr("value")); i < x; i++){
         var prevVal = parseInt(it.attr("value"));
         it.attr("value", prevVal-1);
-        it.find(".input_field_name").attr("name", "input_field_name_"+(prevVal-1));
-        it.find(".input_field_code").attr("name", "input_field_code_"+(prevVal-1));
-        it.find(".input_field_ch").attr("name", "input_field_ch_"+(prevVal-1));
-        it.find(".input_field_comments").attr("name", "input_field_comments_"+(prevVal-1));
+        it.find(".input_field_name").attr("name", "nomeDisciplina"+(prevVal-1));
+        it.find(".input_field_code").attr("name", "codigoDisciplina"+(prevVal-1));
+        it.find(".input_field_ch").attr("name", "cargaHorariaDisciplina"+(prevVal-1));
+        it.find(".input_field_comments").attr("name", "comentarioDisciplina"+(prevVal-1));
         it.find(".userfile").attr("name", "userfile"+(prevVal-1));
         it = it.next();
       }
@@ -75,22 +81,20 @@
         $(".hidden_size").attr("value", parseInt(x));
 
         $(wrapper).append('<div class="input_field" value="'+x+'">'
-        +' Nome<font color="#FF0000">*</font>: <input class="input_field_name" id="input_field_name_'+x+'" type="text" name="nomeDisciplina'+x+'"/>'
-        +' Código<font color="#FF0000">*</font>: <input class="input_field_code" id="input_field_code_'+x+'" type="text" name="codigoDisciplina'+x+'"/>'
-        +' Carga Horária<font color="#FF0000">*</font>: <input class="input_field_ch" id="input_field_ch_'+x+'" type="text" name="cargaHorariaDisciplina'+x+'"/>'
+        +' Nome<font color="#FF0000">*</font>: <input class="input_field_name" type="text" name="nomeDisciplina'+x+'"/>'
+        +' Código<font color="#FF0000">*</font>: <input class="input_field_code" type="text" name="codigoDisciplina'+x+'"/>'
+        +' Carga Horária<font color="#FF0000">*</font>: <input class="input_field_ch" type="text" name="cargaHorariaDisciplina'+x+'"/>'
         +' <a href="#" class="remove_field"><button class="rem_field_but">Remover Disciplina</button></a>'
         +' <br>'
         +' <br>'
         +' <span class="comments">Observações: <textarea class="input_field_comments" id="input_field_comments_'+x+'" rows="6" cols="37" name="comentarioDisciplina'+x+'"></textarea></span>'
-        +' <span class="upload_area">Ementa<font color="#FF0000">*</font>: <input id="input_field_file_'+x+'" class="userfile" name="userfile'+x+'" type="file" /></span></div>'); 
+        +' <span class="upload_area">Ementa<font color="#FF0000">*</font>: <input class="userfile" name="userfile'+x+'" type="file" /></span></div>'); 
       }
     });
   });
 
   function getUniversities(){
-    var universities = document.getElementById("universitySelect");
     document.getElementById("countrySelect").disabled = true;
-    universities.disabled = true;
     var university = document.getElementById("countrySelect").value;
 
     if (university == "US"){
@@ -99,34 +103,25 @@
 
     $.getJSON("pegarUniversidades.php", {location: university}, function(json){
       // Empty previous university list
-      $("#universitySelect").empty();
+      uniList = [];
+      uniId = [];
 
       if (json){
-        var option = document.createElement("option");
-        option.value = 0;
-        option.selected = "selected";
-        option.text = "Selecione..."
-        universities.add(option);
-
         if (university != "US"){
           $.each(json, function (id, elem) {
-            option = document.createElement("option");
-            option.text = elem.name;
-            option.value = elem.id+elem.name;
-            universities.add(option);
+            uniList.push(elem.name);
+            uniId.push(elem.id);
           });
         } else {
           $.each(json, function (id1, elem1) {
             $.each(elem1, function (id2, elem2) {
-              option = document.createElement("option");
-              option.text = elem2.name;
-              option.value = elem2.id+elem2.name;
-              universities.add(option);
+              uniList.push(elem2.name);
+              uniId.push(elem2.id);
             });
           });
         }
 
-        universities.disabled = false;
+        $("#autocomplete").autocomplete({ source: uniList });
       }
 
       document.getElementById("countrySelect").disabled = false;
@@ -144,11 +139,11 @@
     }
 
     function checarDisciplinas(){
-      for (i = 0; i < x; i++){
-        if (($("#input_field_name_"+x).val() == "") ||
-            ($("#input_field_code_"+x).val() == "") ||
-            ($("#input_field_ch_"+x).val() == "") ||
-            ($("#input_field_file_"+x).val() == "")){
+      for (i = 1; i <= x; i++){
+        if (($("[name='nomeDisciplina"+x+"']").val() == "") ||
+            ($("[name='codigoDisciplina"+x+"']").val() == "") ||
+            ($("[name='cargaHorariaDisciplina"+x+"']").val() == "") ||
+            ($("[name='userfile"+x+"']").val() == "")){
           return false;
         }
       }
@@ -173,10 +168,20 @@
         alert("Por favor insira a matricula do estudante");
         return false;
       }
-      if (formulario.Faculdade.value == 0 ){
+      if (formulario.Faculdade.value.length == 0 ){
         alert("Por favor selecione uma faculdade");
         return false;
       }
+      var found = false;
+      var i;
+      for (i = 0; i < uniList.length; i++){
+        if (uniList[i] == $("#autocomplete").val()){
+          found = true;
+          $("#idFacul").attr("value", uniId[i]);
+          break;
+        }
+      }
+      if (found == false) return false;
       if (formulario.CURSO.value == 0 ){
         alert("Por favor selecione um curso");
         return false;
@@ -498,17 +503,8 @@
 
               <br><font color="#000" face="arial, verdana, helvetica"size="2px">Faculdade de Origem</font><font color="#FF0000">*</font><br><p>
 
-              <select id="universitySelect" name="Faculdade">
-<!--                <option value="0" selected="selected"> Selecione... </option>  
-                <?php 
-                  $result = mysql_query("SELECT CdIdeFacul  , NmIdeFacul from faculdades  ");
-                  while($row = mysql_fetch_array($result))
-                  { ?><option value="<?php echo utf8_encode($row['CdIdeFacul']);?>" > <?php echo utf8_encode($row['NmIdeFacul']);?> </option>             
-                <?php
-                  }
-                ?>    
--->                                            
-              </select>
+              <input id="autocomplete" title="Faculdade" name="Faculdade">
+              <input id="idFacul" type="hidden" name="idFaculdade">
               
               </br>  
               <br />
@@ -539,13 +535,13 @@
               <input type="hidden" class="hidden_size" name="num_files" value="1">
               <div class="input_fields_wrap">
               <div class="input_field" value="1">
-                Nome<font color="#FF0000">*</font>: <input class="input_field_name" id="input_field_name_1"  type="text" name="nomeDisciplina1">
-                Código<font color="#FF0000">*</font>: <input class="input_field_code" id="input_field_code_1"  type="text" name="codigoDisciplina1">
-                Carga Horária<font color="#FF0000">*</font>: <input class="input_field_ch" id="input_field_ch_1" type="text" name="cargaHorariaDisciplina1">
+                Nome<font color="#FF0000">*</font>: <input class="input_field_name" type="text" name="nomeDisciplina1">
+                Código<font color="#FF0000">*</font>: <input class="input_field_code" type="text" name="codigoDisciplina1">
+                Carga Horária<font color="#FF0000">*</font>: <input class="input_field_ch" type="text" name="cargaHorariaDisciplina1">
                 <br>
                 <br>
                 <span class="comments">Observações: <textarea class="input_field_comments" id="input_field_comments_1" rows="6" cols="37" name="comentarioDisciplina1"></textarea></span>
-                <span class="upload_area">Ementa<font color="#FF0000">*</font>: <input id="input_field_file_1" class="userfile" name="userfile1" type="file" /></span>
+                <span class="upload_area">Ementa<font color="#FF0000">*</font>: <input class="userfile" name="userfile1" type="file" /></span>
               </div>
               </div>
 

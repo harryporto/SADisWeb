@@ -39,6 +39,7 @@
   $email = $_POST["Email"];
   $matricula = $_POST["Matricula"];
   $nmFaculdade = $_POST["Faculdade"];
+  $IdFaculdade = $_POST["idFaculdade"];
   $IdCurso = $_POST["CURSO"];
   $numDisc = $_POST["num_files"];
   
@@ -48,8 +49,7 @@
   $matricula = strip_tags(mysql_real_escape_string($matricula,$con));  
   $nmFaculdade = strip_tags(mysql_real_escape_string($nmFaculdade,$con));  
   $IdCurso = strip_tags(mysql_real_escape_string($IdCurso,$con));  
-  $idFaculdade = substr($nmFaculdade, 0, 5);
-  $nmFaculdade = substr($nmFaculdade, 5);
+  $IdFaculdade = strip_tags(mysql_real_escape_string($IdFaculdade,$con));  
 
   //Imagem 
   $uploaddir = 'admin/solicitacoes/uploads_temp/';
