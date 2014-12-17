@@ -64,7 +64,8 @@
 											Niveis_CdIdeNivel,											
 											NmIdeUsu,											
 											SenhaIdeUsu,											
-											EmailIdeUsu										
+											EmailIdeUsu,
+											Departamento_CdIdeDepartamento										
 											)
 											VALUES
 											( 
